@@ -1,0 +1,70 @@
+.xui-page.xui-page-style {
+	font-size: 0px;
+	// text-align: right;
+	.page-item,
+	.page-next,
+	.page-prev {
+		width: 24px;
+		height: 24px;
+		line-height: 24px;
+		// border: 1px solid @color-border;
+		padding: 0px;
+		font-weight: normal;
+		color: @color-content;
+		margin-right: 5px;
+		border-radius: 3px;
+		vertical-align: middle;
+		&:hover {
+			// border: 1px solid @color-primary;
+			color:@color-primary-dark;
+		}
+		&.active {
+			// border: 1px solid @color-primary;
+			background: @color-primary-dark;
+			color: @color-white;
+		}
+		&.disabled {
+			// border: 1px solid @color-disabled;
+			// background: @color-disabled;
+			color: @color-subcolor;
+		}
+	}
+	.xui-page-sizer{
+		min-width:40px;
+		max-width: 60px;
+	}
+	// .xui-page-total{
+	// 	float: left;
+	// 	display: block;
+	// 	line-height: 32px;
+	// }
+	.page-prev {
+		font-size: 0px;
+		&:before {
+			content: "\E74D";
+			font-family: "xuiiconfont";
+			font-size: 14px;
+		}
+	}
+	.page-next {
+		font-size: 0px;
+		&:before {
+			content: "\E70A";
+			font-family: "xuiiconfont";
+			font-size: 14px;
+		}
+	}
+	.page-nav {
+		position: relative;
+		text-align: center;
+		&:after {
+			content: "共 " attr(data-total) " 条";
+			font-size: 14px;
+			position: absolute;
+			left: -60px;
+			top: 50%;
+			transform: translateY(-50%);
+			white-space: nowrap;
+		}
+	}
+}

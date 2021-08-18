@@ -1,0 +1,117 @@
+{
+	"login": {
+		"name": "Login",
+		"module": "dag/modules/Login",
+		"meta": {}
+	},
+	"frame": {
+		"name": "Frameset",
+		"module": "dag/modules/Frameset",
+		"meta": {},
+		"path": "/",
+		"redirect": "Home"
+	},
+	"menu": [
+		{
+			"title": "首页",
+			"name": "Home",
+			"icon": "iconfont iconcshouye",
+			"module": "dag/modules/Home"
+		},
+		{
+			"title": "系统管理",
+			"name": "SystemManage",
+			"icon": "iconfont iconcxitongguanli",
+			"menu": [
+				{
+					"title": "设备组管理",
+					"name": "EquipmentGroup",
+					"module": "dag/modules/EquipmentGroup",
+					"icon": "iconfont iconcshouye",
+					"funcs": [
+						{
+							"title": "新增",
+							"name": "EquipmentMonitor_Add"
+						},
+						{
+							"title": "编辑",
+							"name": "EquipmentMonitor_Modify"
+						},
+						{
+							"title": "查看编辑记录",
+							"name": "EquipmentMonitor_History"
+						}
+					]
+				},
+				{
+					"title": "设备管理",
+					"name": "Equipment",
+					"module": "dag/modules/Equipment",
+					"icon": "iconfont iconcshouye"
+				},
+				{
+					"title": "设备登记",
+					"name": "EquipmentRegist",
+					"module": "dag/modules/EquipmentRegist",
+					"icon": "iconfont iconcshouye"
+				},
+				{
+					"title": "用户管理",
+					"name": "UserManage",
+					"module": "dag/modules/UserManage",
+					"icon": "iconfont iconcshouye"
+				},
+				{
+					"title": "角色管理",
+					"name": "RoleManage",
+					"module": "dag/modules/RoleManage",
+					"icon": "iconfont iconcshouye"
+				}
+			]
+		},
+		{
+			"title": "数据查看",
+			"name": "DataView",
+			"icon": "iconfont iconcyulanguanli",
+			"menu": [
+				{
+					"title": "实时数据查看",
+					"name": "RealtimeDataView",
+					"module": "dag/modules/RealtimeDataView",
+					"icon": "iconfont iconcshouye"
+				},
+				{
+					"title": "历史数据查看",
+					"name": "HistoryDataView",
+					"module": "dag/modules/HistoryDataView",
+					"icon": "iconfont iconcshouye"
+				}
+			]
+		},
+		{
+			"title": "数据分析",
+			"name": "DataAnalysis",
+			"icon": "iconfont iconctongjibaobiao",
+			"menu": [
+				{
+					"title": "历史数据分析",
+					"name": "HistoryDataAnalysis",
+					"module": "dag/modules/HistoryDataAnalysis",
+					"icon": "iconfont iconcshouye"
+				},
+				{
+					"title": "报警数据分析",
+					"name": "AlarmDataAnalysis",
+					"module": "dag/modules/AlarmDataAnalysis",
+					"icon": "iconfont iconcshouye"
+				}
+			]
+		},
+		{
+			"title": "系统设置",
+			"icon": "iconfont iconganzhishebei",
+			"name": "SystemConfig",
+			"module": "dag/modules/SystemConfig"
+		}
+	]
+}

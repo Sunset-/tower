@@ -1,0 +1,91 @@
+.xui-form.xui-form-style {
+	.group-title {
+		color: #000;
+		height: 36px;
+		line-height: 36px;
+		font-weight: normal;
+		border-bottom: 1px solid rgba(149, 149, 149, 0.3);
+		margin: 0px 20px;
+		padding-left: 5px;
+		span {
+			font-size: 16px;
+			height: 30px;
+			font-weight: bold;
+		}
+	}
+
+	.xui-btn.xui-btn-style.xui-btn-default,
+	.xui-btn.xui-btn-style.xui-btn- {
+		padding: 0 15px;
+	}
+
+	.xui-form-field {
+		margin-bottom: 10px;
+		min-height: 36px;
+		margin-top: 5px;
+		margin-bottom: 15px;
+
+		.xui-field-widget-component.invalid.dirty {
+			position: relative;
+			border-color: @color-danger;
+
+			&:after {
+				content: attr(validate-msg);
+				position: absolute;
+				left: -12px;
+				color: @color-danger;
+				font-size: 12px;
+				white-space: nowrap;
+				top: 140%;
+				transform: translate(10px, -50%);
+			}
+
+			.xui-select-inputwrap {
+				border-color: @color-danger;
+			}
+		}
+
+		.xui-field-label {
+			font-size: 14px;
+			padding-right: 25px;
+			text-align: right;
+			// min-width    : auto;
+
+			&:before {
+				margin-left: -13px;
+				margin-top: 3px;
+			}
+		}
+	}
+
+	.xui-toolbar.xui-toolbar-style {
+		width: 100%;
+		text-align: left;
+		// margin-top: 20px;
+	}
+
+	&.xui-form-view {
+		.xui-field-label > span:after {
+			content: ":";
+		}
+		.xui-field-widget {
+			font-size: 14px;
+		}
+	}
+
+	.xui-form-field .xui-field-widget.invalid.dirty {
+		position: relative;
+		&:after {
+			content: attr(validate-msg);
+			position: absolute;
+			left: 0px;
+			color: #ff6600;
+			font-size: 12px;
+			white-space: nowrap;
+			top: 110%;
+		}
+	}
+	.xui-form-field .xui-field-widget-component.invalid.dirty:after{
+		display: none;
+	}
+}

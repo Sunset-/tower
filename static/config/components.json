@@ -1,0 +1,1222 @@
+{
+  "/dag2.0/component-accessaliyun": [
+    {
+      "label": "DatahubId",
+      "name": "hubaccessid",
+      "widget": "input",
+      "placeholder": "请输入DatahubId",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "DatahubKey",
+      "name": "hubaccesskey",
+      "widget": "input",
+      "placeholder": "请输入DatahubKey",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "DatahubPoint",
+      "name": "hubendpoint",
+      "widget": "input",
+      "placeholder": "请输入DatahubPoint",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "ProjectName",
+      "name": "hubprojectname",
+      "widget": "input",
+      "placeholder": "请输入ProjectName",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Topic",
+      "name": "hubtopicname",
+      "widget": "input",
+      "placeholder": "请输入Topic",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "SubId",
+      "name": "hubsubId",
+      "widget": "input",
+      "placeholder": "请输入SubId",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "ShardId",
+      "name": "hubshardId",
+      "widget": "input",
+      "placeholder": "请输入ShardId",
+      "default": 0,
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "limit",
+      "name": "hublimit",
+      "widget": "input",
+      "placeholder": "请输入limit",
+      "default": 10,
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "OSSIntenert",
+      "name": "ossisintenert",
+      "widget": "input",
+      "placeholder": "请输入OSSIntenert",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "OSSPoint",
+      "name": "ossendpoint",
+      "widget": "input",
+      "placeholder": "请输入OSSPoint",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "OSSId",
+      "name": "ossaccesskeyid",
+      "widget": "input",
+      "placeholder": "请输入OSSId",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "OSSKey",
+      "name": "osssecretaccesskey",
+      "widget": "input",
+      "placeholder": "请输入OSSKey",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "OSSBucket",
+      "name": "ossbucketname",
+      "widget": "input",
+      "placeholder": "请输入OSSBucket",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+
+  "/dag2.0/component-input-stream": [
+    {
+      "label": "流程",
+      "name": "flowTemplate",
+      "widget": "select",
+      "data": [
+        {
+          "text": "1400接入",
+          "value": "1400server"
+        },
+        {
+          "text": "威目视频结构化接入",
+          "value": "accessdeepglintvideo"
+        },
+        {
+          "text": "数据库车辆数据采集",
+          "value": "dbcollect"
+        },
+        {
+          "text": "FTP下载企标数据",
+          "value": "ftphubtodag"
+        },
+        {
+          "text": "宇视univiewTCP协议接入",
+          "value": "univiewtcp"
+        },
+        {
+          "text": "企标kafka数据接入",
+          "value": "accessnetposamsg"
+        }
+      ],
+      "placeholder": "请选择流程",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "数据过滤",
+      "name": "msgfilter_filterResource",
+      "widget": "radio",
+      "default": "",
+      "data": [
+        { "text": "按设备过滤", "value": "" },
+        { "text": "不过滤", "value": "1" }
+      ]
+    },
+    {
+      "label": "数据标识",
+      "name": "hubmsgthrift_dataMark",
+      "widget": "checkbox",
+      "data": [{ "text": "再识别数据", "value": "1" }],
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "数据类型",
+      "name": "msgfilter_dataType",
+      "widget": "checkbox",
+      "default": 511,
+      "bit": true,
+      "monopolize": true,
+      "data": [
+        {
+          "text": "人脸",
+          "value": "1"
+        },
+        {
+          "text": "人体",
+          "value": "2"
+        },
+        {
+          "text": "车辆",
+          "value": "4"
+        },
+        {
+          "text": "非机动车",
+          "value": "8"
+        },
+        {
+          "text": "wifi",
+          "value": "16"
+        },
+        {
+          "text": "rfid",
+          "value": "32"
+        },
+        {
+          "text": "烟感",
+          "value": "64"
+        },
+        {
+          "text": "门禁",
+          "value": "128"
+        },
+        {
+          "text": "GPS",
+          "value": "256"
+        }
+      ],
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "视图库ID",
+      "name": "1400server_viewLibId",
+      "widget": "textarea",
+      "monopolize": true,
+      "placeholder": "请输入视图库ID，多个时请用英文逗号分隔",
+      "style": "width: 92.8%;",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "服务端口",
+      "name": "1400server_serverPort",
+      "widget": "input",
+      "placeholder": "请输入启动端口",
+      "$port": true,
+      "validate": {
+        "ports": true,
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "认证开关",
+      "name": "1400server_openAuth",
+      "widget": "switch",
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "用户名",
+      "name": "1400server_username",
+      "widget": "input",
+      "placeholder": "请输入用户名",
+      "validate": {
+        "maxlength": 24
+      },
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "密码",
+      "name": "1400server_password",
+      "widget": "input",
+      "placeholder": "请输入密码",
+      "validate": {
+        "maxlength": 24
+      },
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "保活过期时间(秒)",
+      "name": "1400server_sessionTimeout",
+      "widget": "input",
+      "placeholder": "请输入保活过期时间",
+      "default": 60,
+      "validate": {
+        "required": true,
+        "integer": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='1400server';}"
+    },
+    {
+      "label": "标准采集地址",
+      "name": "hubmsgthrift_address",
+      "widget": "static",
+      "value": "standard-collector:8103",
+      "visible": false
+    },
+    {
+      "label": "发送标准采集的重试次数",
+      "name": "hubmsgthrift_retry",
+      "widget": "static",
+      "value": "-1",
+      "visible": false
+    },
+    {
+      "label": "kafka地址",
+      "name": "kafkaconsumer_bootstrap",
+      "widget": "input",
+      "placeholder": "请输入kafka地址",
+      "validate": {
+        "required": true,
+        "ipport": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='accessdeepglintvideo';}"
+    },
+    {
+      "label": "消费topics",
+      "name": "kafkaconsumer_topics",
+      "widget": "input",
+      "placeholder": "请输入消费topics",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='accessdeepglintvideo';}"
+    },
+    {
+      "label": "消费groupId",
+      "name": "kafkaconsumer_groupId",
+      "widget": "input",
+      "placeholder": "请输入消费groupId",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='accessdeepglintvideo';}"
+    },
+    {
+      "label": "从头消费",
+      "name": "kafkaconsumer_fromEarliestOffset",
+      "widget": "switch",
+      "default": false,
+      "$premise": "function(model){return model.flowTemplate=='accessdeepglintvideo';}"
+    },
+    {
+      "name": "kafkaconsumer_batchSize",
+      "widget": "static",
+      "value": 100,
+      "$premise": "function(model){return model.flowTemplate=='accessdeepglintvideo';}"
+    },
+    {
+      "name": "kafkaconsumer_batchDelay",
+      "widget": "static",
+      "value": 50,
+      "$premise": "function(model){return model.flowTemplate=='accessdeepglintvideo';}"
+    },
+    {
+      "name": "kafkaconsumer_parallel",
+      "widget": "static",
+      "value": 10,
+      "$premise": "function(model){return model.flowTemplate=='accessdeepglintvideo';}"
+    },
+    {
+      "label": "数据库驱动",
+      "name": "dbcollector_driver",
+      "widget": "select",
+      "data": [
+        {
+          "text": "ORACLE",
+          "value": "oracle"
+        },
+        {
+          "text": "MySQL",
+          "value": "mysql"
+        },
+        {
+          "text": "SQLserver",
+          "value": "mssql"
+        }
+      ],
+      "placeholder": "请选择数据库驱动",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "连接DSN",
+      "name": "dbcollector_dsn",
+      "widget": "input",
+      "style": "width:580px;",
+      "monopolize": true,
+      "placeholder": "例如mysql: user:password@tcp(100.100.100.100:3306)/dbname?charset=utf8",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "查询SQL",
+      "name": "dbcollector_sql",
+      "widget": "textarea",
+      "style": "width:580px;",
+      "monopolize": true,
+      "placeholder": "请输入查询SQL，变量：$offset 偏移量，$limit 查询页大小",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "偏移量列名",
+      "name": "dbcollector_offsetCol",
+      "widget": "input",
+      "placeholder": "请输入偏移属性的列名",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "起始偏移值",
+      "name": "dbcollector_beginOffset",
+      "widget": "input",
+      "placeholder": "请输入起始偏移值",
+      "default": "0",
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "采集间隔",
+      "name": "dbcollector_interval",
+      "widget": "input",
+      "placeholder": "请输入采集间隔（毫秒）",
+      "default": "1000",
+      "validate": {
+        "required": true,
+        "integer": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "分页大小",
+      "name": "dbcollector_batchSize",
+      "widget": "input",
+      "placeholder": "请输入分页大小",
+      "default": "100",
+      "validate": {
+        "required": true,
+        "integer": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "采集groupId",
+      "name": "dbcollector_groupId",
+      "widget": "input",
+      "placeholder": "请输入采集groupId",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "是否动态数据",
+      "name": "dbcollector_dynamicData",
+      "widget": "switch",
+      "default": true,
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}"
+    },
+    {
+      "label": "图片下载类型",
+      "name": "imagedeal_imageType",
+      "default": 0,
+      "$premise": "function(model){return model.flowTemplate=='dbcollect';}",
+      "monopolize": true,
+      "bit": true,
+      "widget": "checkbox",
+      "data": [
+        {
+          "text": "人脸大图",
+          "value": "1"
+        },
+        {
+          "text": "人体大图",
+          "value": "2"
+        },
+        {
+          "text": "车辆大图",
+          "value": "4"
+        },
+        {
+          "text": "非机动车大图",
+          "value": "8"
+        },
+        {
+          "text": "人脸小图",
+          "value": "16"
+        },
+        {
+          "text": "人体小图",
+          "value": "32"
+        },
+        {
+          "text": "车辆小图",
+          "value": "64"
+        },
+        {
+          "text": "非机动车小图",
+          "value": "128"
+        }
+      ]
+    },
+    {
+      "label": "服务端口",
+      "name": "univiewtcp_port",
+      "widget": "input",
+      "placeholder": "请输入tcp服务端口",
+      "$port": true,
+      "validate": {
+        "required": true,
+        "port": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='univiewtcp';}"
+    },
+    {
+      "label": "FTP地址",
+      "name": "ftpwatcher_ftpAddr",
+      "widget": "input",
+      "placeholder": "请输入FTP地址",
+      "validate": {
+        "required": true,
+        "ipport": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='ftphubtodag';}"
+    },
+    {
+      "label": "FTP用户名",
+      "name": "ftpwatcher_ftpUser",
+      "widget": "input",
+      "placeholder": "请输入FTP用户名",
+      "validate": {
+        "required": true,
+        "maxlength": 40
+      },
+      "$premise": "function(model){return model.flowTemplate=='ftphubtodag';}"
+    },
+    {
+      "label": "FTP登录密码",
+      "name": "ftpwatcher_ftpPassword",
+      "widget": "input",
+      "placeholder": "请输入FTP登录密码",
+      "validate": {
+        "required": true,
+        "maxlength": 40
+      },
+      "$premise": "function(model){return model.flowTemplate=='ftphubtodag';}"
+    },
+    {
+      "label": "FTP文件路径",
+      "name": "ftpwatcher_watchDir",
+      "widget": "input",
+      "placeholder": "请输入FTP文件路径",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='ftphubtodag';}"
+    },
+    {
+      "label": "文件名匹配正则",
+      "name": "ftpwatcher_filterReg",
+      "widget": "input",
+      "placeholder": "请输入文件名匹配正则",
+      "$premise": "function(model){return model.flowTemplate=='ftphubtodag';}"
+    },
+    {
+      "label": "扫描频率",
+      "name": "ftpwatcher_interval",
+      "widget": "input",
+      "placeholder": "请输入扫描频率(毫秒)",
+      "default": "1000",
+      "validate": {
+        "integer": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='ftphubtodag';}"
+    },
+    {
+      "label": "kafka地址",
+      "name": "kafkaconsumer_bootstrap",
+      "widget": "input",
+      "placeholder": "请输入kafka地址",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}"
+    },
+    {
+      "label": "消费topics",
+      "name": "kafkaconsumer_topics",
+      "widget": "input",
+      "placeholder": "请输入消费topics",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}"
+    },
+    {
+      "label": "消费groupId",
+      "name": "kafkaconsumer_groupId",
+      "widget": "input",
+      "placeholder": "请输入消费groupId",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}"
+    },
+    {
+      "label": "从头消费",
+      "name": "kafkaconsumer_fromEarliestOffset",
+      "widget": "switch",
+      "default": false,
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}"
+    },
+    {
+      "name": "kafkaconsumer_batchSize",
+      "widget": "static",
+      "value": 100,
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}"
+    },
+    {
+      "name": "kafkaconsumer_batchDelay",
+      "widget": "static",
+      "value": 50,
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}"
+    },
+    {
+      "name": "kafkaconsumer_parallel",
+      "widget": "static",
+      "value": 10,
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}"
+    },
+    {
+      "label": "图片url拼接路径",
+      "name": "imagedeal_bimgAdd",
+      "placeholder": "图片url拼接路径",
+      "monopolize": true,
+      "style": "width:575px;",
+      "$premise": "function(model){return model.flowTemplate=='accessnetposamsg';}",
+      "widget": "input"
+    }
+  ],
+  "/dag2.0/component-output-stream": [
+    {
+      "label": "流程",
+      "name": "flowTemplate",
+      "widget": "select",
+      "data": [
+        {
+          "text": "1400转发",
+          "value": "1400client"
+        },
+        {
+          "text": "图解转发",
+          "value": "sendtovias"
+        },
+        {
+          "text": "DAG级联转发",
+          "value": "sendtodag"
+        },
+        {
+          "text": "威目特征转发",
+          "value": "featuresendtodeep"
+        },
+        {
+          "text": "企标数据上传FTP",
+          "value": "daghubtoftp"
+        },
+        {
+          "text": "推送IOD",
+          "value": "sendfacetoiod"
+        },
+        {
+          "text": "推送IOD数据库",
+          "value": "ioddatabases"
+        },
+        {
+          "text": "推送缉查布控",
+          "value": "sendjcbk"
+        }
+      ],
+      "$change": "function(v1,v2,model){delete model.kafkaconsumer_topics;}",
+      "placeholder": "请选择流程",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "数据过滤",
+      "name": "msgfilter_filterResource",
+      "widget": "radio",
+      "default": "",
+      "data": [
+        { "text": "按设备过滤", "value": "" },
+        { "text": "不过滤", "value": "1" }
+      ]
+    },
+    {
+      "label": "kafka地址",
+      "name": "kafkaconsumer_bootstrap",
+      "widget": "static",
+      "value": "kafka:9092",
+      "visible": false
+    },
+    {
+      "label": "消费topic",
+      "name": "kafkaconsumer_topics",
+      "widget": "multiselect",
+      "placeholder": "请选择要消费的kafka-topic",
+      "default": "dag-row,dag-structure,dag-face-vid",
+      "data": [
+        {
+          "text": "原始数据",
+          "value": "dag-row"
+        },
+        {
+          "text": "二次识别数据",
+          "value": "dag-structure"
+        },
+        {
+          "text": "VID数据",
+          "value": "dag-face-vid"
+        },
+        {
+          "text": "WIFI",
+          "value": "dag-wifi"
+        },
+        {
+          "text": "RFID",
+          "value": "dag-rfid"
+        },
+        {
+          "text": "GPS",
+          "value": "dag-gps"
+        },
+        {
+          "text": "感知数据",
+          "value": "dag-sensory"
+        },
+        {
+          "text": "电围数据",
+          "value": "dag-basestation"
+        },
+        {
+          "text": "缉查布控补录",
+          "value": "dag_jcbk_supplement"
+        }
+      ],
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "消费groupId",
+      "name": "kafkaconsumer_groupId",
+      "widget": "input",
+      "placeholder": "请输入消费groupId",
+      "validate": {
+        "maxlength": 32,
+        "required": true
+      }
+    },
+    {
+      "label": "从头消费",
+      "name": "kafkaconsumer_fromEarliestOffset",
+      "widget": "switch"
+    },
+    {
+      "label": "重组批次大小",
+      "name": "bytetohubmsg_reBatchSize",
+      "default": 0,
+      "placeholder": "请输入重组批次大小",
+      "widget": "input",
+      "validate": {
+        "integer": true
+      }
+    },
+    {
+      "label": "批次大小",
+      "name": "kafkaconsumer_batchSize",
+      "widget": "static",
+      "value": 100,
+      "visible": false
+    },
+    {
+      "label": "消费间隔最大等待时间",
+      "name": "kafkaconsumer_batchDelay",
+      "widget": "static",
+      "value": 50,
+      "visible": false
+    },
+    {
+      "label": "发送数据并行协程数",
+      "name": "kafkaconsumer_parallel",
+      "widget": "static",
+      "value": 10,
+      "visible": false
+    },
+    {
+      "label": "topic消费睡眠",
+      "name": "kafkaconsumer_topicSleep",
+      "$premise": "function(model){return model.flowTemplate=='sendjcbk';}",
+      "widget": "static",
+      "value": "dag_jcbk_supplement:120000",
+      "visible": false
+    },
+    {
+      "label": "视图库ID",
+      "name": "1400client_userIdentify",
+      "$premise": "function(model){return model.flowTemplate=='1400client';}",
+      "widget": "input",
+      "placeholder": "请输入视图库ID",
+      "validate": {
+        "required": true,
+        "maxlength": 50
+      }
+    },
+    {
+      "label": "上级服务地址",
+      "name": "1400client_upAddr",
+      "$premise": "function(model){return model.flowTemplate=='1400client';}",
+      "widget": "input",
+      "placeholder": "请输入上级服务地址",
+      "validate": {
+        "required": true,
+        "ipport": true,
+        "maxlength": 32
+      }
+    },
+    {
+      "label": "工作模式",
+      "name": "1400client_isSubscribe",
+      "$premise": "function(model){return model.flowTemplate=='1400client';}",
+      "widget": "radio",
+      "default": "false",
+      "data": [
+        {
+          "text": "采集",
+          "value": "false"
+        },
+        {
+          "text": "订阅",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "label": "开启注册",
+      "name": "1400client_enableRegist",
+      "$premise": "function(model){return model.flowTemplate=='1400client';}",
+      "widget": "switch"
+    },
+    {
+      "label": "用户名",
+      "name": "1400client_registUserName",
+      "$premise": "function(model){return model.flowTemplate=='1400client';}",
+      "widget": "input",
+      "placeholder": "请输入用户名",
+      "validate": {
+        "maxlength": 32
+      }
+    },
+    {
+      "label": "密码",
+      "name": "1400client_registPassword",
+      "$premise": "function(model){return model.flowTemplate=='1400client';}",
+      "widget": "input",
+      "placeholder": "请输入密码",
+      "validate": {
+        "maxlength": 32
+      }
+    },
+    {
+      "label": "保活周期(秒)",
+      "name": "1400client_KeepAliveTime",
+      "$premise": "function(model){return model.flowTemplate=='1400client';}",
+      "widget": "input",
+      "placeholder": "请输入保活过期时间",
+      "default": 30,
+      "validate": {
+        "required": true,
+        "integer": true
+      }
+    },
+
+    {
+      "label": "图片下载连接池",
+      "name": "imagedeal_capacity",
+      "widget": "static",
+      "value": 50,
+      "visible": false
+    },
+    {
+      "label": "client发送连接池",
+      "name": "1400client_capacity",
+      "widget": "static",
+      "value": 50,
+      "visible": false
+    },
+    {
+      "name": "1400client_subscribId",
+      "widget": "input",
+      "visible": false
+    },
+    {
+      "name": "1400client_subscribTitle",
+      "widget": "input",
+      "visible": false
+    },
+    {
+      "name": "1400client_subscribAddr",
+      "widget": "input",
+      "visible": false
+    },
+    {
+      "label": "标准采集地址",
+      "name": "hubmsgthrift_address",
+      "widget": "input",
+      "placeholder": "请输入标准采集地址",
+      "$premise": "function(model){return model.flowTemplate=='sendtodag';}",
+      "validate": {
+        "required": true,
+        "ipport": true
+      }
+    },
+    {
+      "label": "IOD服务地址",
+      "name": "iodthrift_address",
+      "widget": "input",
+      "placeholder": "请输入IOD服务地址",
+      "$premise": "function(model){return model.flowTemplate=='sendfacetoiod';}",
+      "validate": {
+        "required": true,
+        "ipport": true
+      }
+    },
+    {
+      "label": "发送标准采集的重试次数",
+      "name": "hubmsgthrift_retry",
+      "widget": "static",
+      "value": "-1",
+      "visible": false
+    },
+    {
+      "label": "kafka发送地址",
+      "name": "kafkaproducer_bootstrap",
+      "widget": "input",
+      "placeholder": "请输入kafka发送地址",
+      "$premise": "function(model){return model.flowTemplate=='sendtovias';}",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "kafka版本",
+      "name": "kafkaproducer_version",
+      "widget": "select",
+      "placeholder": "请选择kafka版本",
+      "data": [
+        {
+          "text": "v2.3.0",
+          "value": "2.3.0"
+        },
+        {
+          "text": "v0.10.1",
+          "value": "0.10.1.0"
+        }
+      ],
+      "default": "2.3.0",
+      "$premise": "function(model){return model.flowTemplate=='sendtovias';}",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "kafka发送重试次数",
+      "name": "kafkaproducer_retry",
+      "widget": "static",
+      "value": "-1",
+      "visible": false
+    },
+    {
+      "label": "威目引擎地址",
+      "name": "featuresforwarddeepglint_vmAddress",
+      "widget": "input",
+      "placeholder": "请输入威目引擎地址",
+      "$premise": "function(model){return model.flowTemplate=='featuresendtodeep';}",
+      "validate": {
+        "required": true,
+        "ipport": true
+      }
+    },
+    {
+      "label": "人脸置信度阀值",
+      "name": "featuresforwarddeepglint_filterFaceLowerConfidence",
+      "widget": "input",
+      "placeholder": "请输入人脸置信度阀值",
+      "$premise": "function(model){return model.flowTemplate=='featuresendtodeep';}",
+      "validate": {
+        "required": true,
+        "number": true
+      }
+    },
+    {
+      "label": "协程池大小",
+      "name": "featuresforwarddeepglint_httpClientNum",
+      "widget": "static",
+      "$premise": "function(model){return model.flowTemplate=='featuresendtodeep';}",
+      "value": "10",
+      "visible": false
+    },
+    {
+      "label": "FTP地址",
+      "name": "ftpupload_ftpAddr",
+      "widget": "input",
+      "placeholder": "请输入FTP地址",
+      "$premise": "function(model){return model.flowTemplate=='daghubtoftp';}",
+      "validate": {
+        "required": true,
+        "ipport": true
+      }
+    },
+    {
+      "label": "FTP用户名",
+      "name": "ftpupload_ftpUser",
+      "widget": "input",
+      "placeholder": "请输入FTP用户名",
+      "$premise": "function(model){return model.flowTemplate=='daghubtoftp';}",
+      "validate": {
+        "required": true,
+        "maxlength": 40
+      }
+    },
+    {
+      "label": "FTP登陆密码",
+      "name": "ftpupload_ftpPassword",
+      "widget": "input",
+      "placeholder": "请输入FTP登陆密码",
+      "$premise": "function(model){return model.flowTemplate=='daghubtoftp';}",
+      "validate": {
+        "required": true,
+        "maxlength": 40
+      }
+    },
+    {
+      "label": "FTP文件路径",
+      "name": "ftpupload_ftpremotepath",
+      "widget": "input",
+      "placeholder": "请输入FTP文件路径",
+      "$premise": "function(model){return model.flowTemplate=='daghubtoftp';}",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "单文件大小",
+      "name": "hubmsgcompresstozip_byteSize",
+      "widget": "input",
+      "placeholder": "请输入单文件大小，单位：MB",
+      "$premise": "function(model){return model.flowTemplate=='daghubtoftp';}",
+      "default": 3,
+      "validate": {
+        "required": true
+      }
+    },
+
+    {
+      "label": "缉查布控地址",
+      "name": "hubmsgtojcbk_address",
+      "widget": "input",
+      "placeholder": "请输入缉查布控地址：http://127.0.0.1:9080/rminf/services/Trans",
+      "$premise": "function(model){return model.flowTemplate=='sendjcbk';}",
+      "monopolize": true,
+      "style": "width:575px;",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "授权码",
+      "name": "hubmsgtojcbk_registCode",
+      "widget": "input",
+      "placeholder": "请输入授权码",
+      "monopolize": true,
+      "style": "width:575px;",
+      "$premise": "function(model){return model.flowTemplate=='sendjcbk';}",
+      "validate": {}
+    },
+    {
+      "label": "数据库类型",
+      "name": "hubmsgtojcbk_db_driver",
+      "widget": "select",
+      "data": [
+        {
+          "text": "MySQL",
+          "value": "mysql"
+        }
+      ],
+      "placeholder": "请选择数据库驱动",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='sendjcbk';}"
+    },
+    {
+      "label": "连接DSN",
+      "name": "hubmsgtojcbk_db_dsn",
+      "widget": "input",
+      "style": "width:580px;",
+      "monopolize": true,
+      "placeholder": "例如mysql: user:password@tcp(100.100.100.100:3306)/dbname?charset=utf8",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='sendjcbk';}"
+    },
+    {
+      "label": "数据库类型",
+      "name": "dbiod_driver",
+      "widget": "select",
+      "data": [
+        {
+          "text": "MySQL",
+          "value": "mysql"
+        }
+      ],
+      "placeholder": "请选择数据库驱动",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='ioddatabases';}"
+    },
+    {
+      "label": "连接DSN",
+      "name": "dbiod_dsn",
+      "widget": "input",
+      "style": "width:580px;",
+      "monopolize": true,
+      "placeholder": "例如mysql: user:password@tcp(100.100.100.100:3306)/dbname?charset=utf8",
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='ioddatabases';}"
+    },
+    {
+      "label": "批次大小",
+      "name": "dbiod_batchSize",
+      "widget": "input",
+      "placeholder": "请输入批次大小",
+      "dafault": 100,
+      "validate": {
+        "required": true
+      },
+      "$premise": "function(model){return model.flowTemplate=='ioddatabases';}"
+    },
+    {
+      "label": "图片路径转换",
+      "name": "hubmsgtojcbk_imageMapping",
+      "widget": "textarea",
+      "placeholder": "例如：http://1.1.1.1->http://2.2.2.2",
+      "monopolize": true,
+      "style": "width:575px;",
+      "$premise": "function(model){return model.flowTemplate=='sendjcbk';}"
+    },
+    {
+      "label": "图片下载类型",
+      "name": "imagedeal_imageType",
+      "default": 0,
+      "$premise": "function(model){return model.flowTemplate=='sendtodag'||model.flowTemplate=='1400client'||model.flowTemplate=='sendfacetoiod'||model.flowTemplate=='daghubtoftp';}",
+      "monopolize": true,
+      "bit": true,
+      "widget": "checkbox",
+      "data": [
+        {
+          "text": "人脸大图",
+          "value": "1"
+        },
+        {
+          "text": "人体大图",
+          "value": "2"
+        },
+        {
+          "text": "车辆大图",
+          "value": "4"
+        },
+        {
+          "text": "非机动车大图",
+          "value": "8"
+        },
+        {
+          "text": "人脸小图",
+          "value": "16"
+        },
+        {
+          "text": "人体小图",
+          "value": "32"
+        },
+        {
+          "text": "车辆小图",
+          "value": "64"
+        },
+        {
+          "text": "非机动车小图",
+          "value": "128"
+        }
+      ]
+    },
+    {
+      "label": "图片url拼接路径",
+      "name": "imagedeal_bimgAdd",
+      "placeholder": "图片url拼接路径",
+      "monopolize": true,
+      "style": "width:575px;",
+      "$premise": "function(model){return model.flowTemplate=='sendtodag'||model.flowTemplate=='daghubtoftp';}",
+      "widget": "input"
+    }
+  ]
+}

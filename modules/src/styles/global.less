@@ -1,0 +1,502 @@
+html {
+	min-width: 1366px;
+}
+
+body {
+	font-size: 14px;
+	font-family: 微软雅黑;
+}
+
+// h5vp北京颜色
+.h5vp-content .h5vp-video-container.h5vp-bg-img {
+	background-color: @color-background-major;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.MODULE-CONTAINER {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	left: 10px;
+	bottom: 10px;
+
+	.filter-wrap .xui-filter {
+		.newline {
+			width: 100%;
+			height: 1px;
+			display: inline-block;
+			border-bottom: 1px dashed @color-divider;
+		}
+	}
+
+	.MODULE-MAJOR {
+		position: absolute;
+		top: 0;
+		right: 0px;
+		left: 0px;
+		bottom: 0px;
+	}
+
+	.MODULE-MAJOR-CONTENT {
+		position: absolute;
+		top: 0;
+		right: 0px;
+		left: 0px;
+		bottom: 0px;
+		background: @color-background-white;
+
+		// 面板布局
+		.PANEL {
+			border-radius: 2px;
+			overflow: hidden;
+			border-top: none;
+			margin-top: 0px;
+			position: absolute;
+			top: 40px;
+			right: 0px;
+			left: 0px;
+			bottom: 0px;
+			background: @color-background-white;
+
+			// herder标签
+			& > header {
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+				font-weight: bold;
+				border-bottom: 1px solid @color-border;
+			}
+		}
+
+		// 带搜索框布局
+		.PANEL-SEARCH {
+			height: 30px;
+			padding-bottom: 10px;
+			display: flex;
+			align-items: center;
+			background: @color-background-menu;
+		}
+
+		.PANEL-SEARCH-CONTAINER {
+			position: absolute;
+			margin-top: 0px;
+			top: 40px;
+			right: 0px;
+			left: 0px;
+			bottom: 0px;
+		}
+
+		// 全屏容器标签
+		.PANEL-CONTAINER {
+			// padding-top   : 15px;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-bottom: 15px;
+		}
+
+		// 带按钮标签
+		.PANEL-BUTTON {
+			padding-top: 0px;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-bottom: 0px;
+		}
+
+		// 按钮标签下侧容器
+		.PANEL-BUTTON-CONTAINER {
+			padding-top: 0px;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-bottom: 15px;
+		}
+
+		.PANEL-TABLE {
+			position: absolute;
+			top: 50px;
+			right: 0px;
+			left: 0px;
+			bottom: 0px;
+		}
+
+		// 全屏布局
+		.PANEL-FULL {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			left: 0px;
+			bottom: 0px;
+		}
+
+		// 垂直布局
+		.VERTICAL-LEFT {
+			position: absolute;
+			width: 18%;
+			top: 0px;
+			right: 0px;
+			left: 0px;
+			bottom: 0px;
+			border-radius: 2px;
+			background: @color-background-white;
+			overflow: hidden;
+		}
+
+		.VERTICAL-RIGHT {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			left: 18.6%;
+			bottom: 0px;
+			border-radius: 2px;
+			overflow: hidden;
+
+			// 带按钮标签
+			.VERTICAL-SEARCH {
+				position: absolute;
+				height: 50px;
+				top: -10px;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+			}
+
+			// 按钮标签下侧容器
+			.VERTICAL-RIGHT-CONTAINER {
+				position: absolute;
+				top: 40px;
+				right: 0px;
+				left: 0px;
+				bottom: 0px;
+				padding-top: 0px;
+				padding-left: 20px;
+				padding-right: 20px;
+				padding-bottom: 15px;
+				background: @color-background-white;
+				border-radius: 2px;
+
+				.VERTICAL-RIGHT-BUTTON {
+					padding-top: 0px;
+					padding-bottom: 0px;
+				}
+			}
+		}
+	}
+}
+
+.table_defult {
+	width: 100%;
+
+	thead > tr {
+		height: 38px;
+		font-weight: 900;
+		line-height: 38px;
+		background: fade(@color-subcolor, 30%);
+		// border-top: 1px solid fade(@color-subcolor, 30%);
+		text-align: center;
+
+		th {
+			color: @color-hearder;
+			padding-left: 10px;
+			vertical-align: middle;
+		}
+	}
+
+	tbody > tr {
+		background: #fff;
+		height: 4px;
+		text-align: center;
+
+		td {
+			height: 42px;
+			margin: 0px;
+			padding-left: 10px;
+			color: @color-title;
+			vertical-align: middle;
+
+			& > div {
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				min-width: 20px;
+			}
+		}
+
+		&:nth-child(odd) {
+			background: #fff;
+
+			&:hover {
+				background: fade(@color-primary, 15%);
+			}
+		}
+
+		&:nth-child(even) {
+			background: fade(@color-subcolor, 10%);
+
+			&:hover {
+				background: fade(@color-primary, 15%);
+			}
+		}
+
+		&:not(:last-child) {
+			border-bottom: 0px solid @color-background-major;
+		}
+	}
+}
+
+textarea:disabled,
+input:disabled {
+	background-color: @color-background;
+}
+
+.absolute-box {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+.h-small {
+	height: 660px;
+}
+
+.h-big {
+	height: 700px;
+}
+
+.back-primary {
+	background: @color-primary;
+}
+
+.back-info {
+	background: @color-info;
+}
+
+.back-success {
+	background: @color-success;
+}
+
+.back-disabled {
+	background: @color-disabled;
+}
+
+//致命的
+.back-fatal {
+	background: @color-fatal;
+}
+
+// 严重的
+.back-error {
+	background: @color-danger;
+}
+
+// 警告
+.back-warning {
+	background: @color-warning;
+}
+
+//一般的
+.back-same {
+	background: @color-same;
+}
+
+// 字体
+.text-small {
+	font-size: 12px;
+}
+
+.text-normal {
+	font-size: 14px;
+}
+
+.text-big {
+	font-size: 16px;
+}
+
+.text-large {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.number {
+	font-family: Bahnschrift;
+}
+
+.number-mini {
+	font-family: Bahnschrift;
+	font-size: 14px;
+}
+
+.number-small {
+	font-family: Bahnschrift;
+	font-size: 16px;
+}
+
+.number-normal {
+	font-family: Bahnschrift;
+	font-size: 20px;
+}
+
+.number-big {
+	font-family: Bahnschrift;
+	font-size: 24px;
+}
+
+.number-large {
+	font-family: Bahnschrift;
+	font-size: 40px;
+}
+
+.xui-tabs .xui-tab-item.is-active {
+	background: #409eff;
+	color: #fff;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.mr-10 {
+	margin-right: 10px;
+}
+
+.toolbar_page {
+	line-height: 50px;
+	height: 50px;
+
+	.page_total {
+		float: right;
+		line-height: 50px;
+
+		.page_total_num {
+			color: @color-primary;
+		}
+	}
+}
+
+.toolbar.xui-toolbar {
+	float: left;
+	line-height: 50px;
+	height: 50px;
+}
+
+// 字色
+.color-title {
+	color: @color-title;
+}
+
+//正文
+.color-content {
+	color: @color-content;
+}
+
+//辅助/图标
+.color-subcolor {
+	color: @color-subcolor;
+}
+
+.color-primary {
+	color: @color-primary;
+}
+
+.color-danger {
+	color: @color-danger;
+}
+
+.color-success {
+	color: @color-success;
+}
+
+//致命的
+.color-fatal {
+	color: @color-fatal;
+}
+
+// 严重的
+.color-error {
+	color: @color-danger;
+}
+
+// 警告
+.color-warning {
+	color: @color-warning;
+}
+
+//一般的
+.color-same {
+	color: @color-same;
+}
+
+// 面板
+.panel {
+	background: @color-background-white;
+	border: 1px solid @color-border;
+}
+
+// 全局加载层
+.load-loading {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.3);
+	z-index: 999999;
+}
+
+.load-ring {
+	width: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -5px;
+	margin-top: -5px;
+	height: 10px;
+	padding: 10px;
+	border-radius: 50%;
+	border: 5px dashed #409eff;
+	animation: load-ring 1.5s ease-out 0s infinite;
+}
+
+// .xui-scroll .scrollpane {
+// 	overflow-x: auto;
+// }
+//
+@keyframes load-ring {
+	50% {
+		transform: rotate(180deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	background-color: #f5f5f5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	// background-color: rgba(204, 204, 204, 0.5);
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgba(119, 119, 119, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(119, 119, 119, 0.6);
+}

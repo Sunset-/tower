@@ -1,0 +1,122 @@
+
+@color-main         : #333;
+//主色
+@color-primary        : #127BFE;
+//信息色
+@color-info           : #48B9FF;
+//成功色
+@color-success        : #67C23A;
+//警告色
+@color-warning        : #E6A23C;
+//危险色
+@color-danger        : #ff5656;
+@color-background-header      : #F3F6FD;
+@color-divider                : #E8E8E8;
+@color-title        : #000000;
+//白色
+@color-white         : #ffffff;
+@color-background             : #F2F2F2;
+
+//confirm
+.dag-global-confirm {
+	position: fixed;
+	z-index: 10005;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	display: none;
+	.global-confirm-mask {
+		position: absolute;
+		z-index: 0;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		transition: all 0.3s ease;
+		background: rgba(0, 0, 0, 0);
+	}
+	&.visible {
+		.global-confirm-mask {
+			background: rgba(0, 0, 0, 0.3);
+		}
+	}
+	&.visible {
+		.global-confirm-box {
+			opacity: 1;
+			transform: translate(-50%, -50%);
+		}
+	}
+	.global-confirm-box {
+		position: absolute;
+		z-index: 1;
+		top: 40%;
+		left: 50%;
+		transform: translate(-50%, -80%);
+		width: 400px;
+		background: #fff;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		transition: all 0.3s ease;
+		opacity: 0;
+		& > header {
+			height: 47px;
+			line-height: 47px;
+			padding: 0px 20px;
+			color    : @color-main;
+			background   : @color-background-header  !important;
+			border-bottom: 1px solid @color-divider !important;
+			& > span {
+				font-size: 14px;
+				font-weight: bold;
+				color: @color-title;
+
+			}
+			& > i {
+				float: right;
+				cursor: pointer;
+				font-size: 18px;
+			}
+			&:hover > i {
+				color: @color-primary;
+			}
+		}
+		& > footer {
+			text-align: right;
+			height: 60px;
+			line-height: 60px;
+			padding: 0px 20px;
+			border-top: 1px solid @color-background;
+			box-sizing: border-box;
+			font-size: 0px;
+			button {
+				margin-left: 20px;
+			}
+		}
+		& > div {
+			position: relative;
+			width: 100%;
+			box-sizing: border-box;
+			display: table;
+			padding: 40px 45px;
+			width: 100%;
+			height: 90px;
+			& > i {
+				position: absolute;
+				font-size: 50px;
+				left: 40px;
+				top: 50%;
+				transform: translate(0%, -50%);
+				color: #2d87f9;
+			}
+			& > p {
+				display: table-cell;
+				vertical-align: middle;
+				padding: 0px;
+				font-size: 14px;
+				width: 100%;
+				word-break: break-all;
+			}
+		}
+	}
+}

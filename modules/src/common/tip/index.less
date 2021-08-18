@@ -1,0 +1,79 @@
+
+@tip-height : 40px;
+//主色
+@color-primary        : #127BFE;
+//信息色
+@color-info           : #48B9FF;
+//成功色
+@color-success        : #67C23A;
+//警告色
+@color-warning        : #E6A23C;
+//危险色
+@color-danger        : #ff5656;
+@color-white         : #ffffff;
+
+.dag-global-tip {
+	height: @tip-height;
+	line-height: @tip-height;
+	min-width: 330px;
+	position: fixed;
+	z-index: 999999;
+	top: 20px;
+	left: 50%;
+	transform: translate(-50%, -100px);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+	background: #fff;
+	color: #444;
+	text-align: center;
+	transition: all 0.3s ease;
+	box-sizing: border-box;
+	border-radius: 2px;
+	&.tip-show {
+		transform: translate(-50%, 0);
+	}
+	.xui_message-img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: @tip-height;
+		height: @tip-height;
+		line-height: @tip-height;
+		&:before {
+			font-size: 14px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		&.success {
+			background: @color-success;
+			color: @color-white;
+		}
+		&.warning,
+		&.warn {
+			background: @color-warning;
+			color: @color-white;
+		}
+		&.info {
+			background: @color-primary;
+			color: @color-white;
+		}
+		&.error,
+		&.danger {
+			background: @color-danger;
+			color: @color-white;
+		}
+	}
+	span {
+		position: absolute;
+		top: 0px;
+		left: @tip-height - 5px;
+		padding: 0px 10px;
+		right: 0px;
+		bottom: 0px;
+		text-align: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}

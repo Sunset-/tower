@@ -1,0 +1,13 @@
+node_modules/
+.history/
+node_modules_bak/
+plugins/
+dist/
+publish/
+logs
+npm-debug.log
+.idea
+.vscode
+
+build/modules
+# *-modules/

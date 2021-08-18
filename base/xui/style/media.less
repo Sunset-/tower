@@ -1,0 +1,366 @@
+@media screen and (max-width: 1440px) {
+
+    // 文本框
+    .xui-input.xui-input-style {
+        height     : @smallHeight-normal;
+        line-height: @smallHeight-normal - 2px;
+        width      : 160px;
+
+        &.clearable {
+            .xui-input-inner {
+                padding: 0 @smallPadding-left;
+            }
+        }
+
+        .xui-input-inner {
+            padding    : 0px @smallPadding-left;
+            font-size  : @smallSixe-normal;
+            height     : @smallHeight-normal ;
+            line-height: @smallHeight-normal - 2px;
+        }
+    }
+
+    .xui-input.xui-input-style.common-input-search .xui-input-wrap>div:after,
+    .xui-input.xui-input-style.xui-input-manner-search .xui-input-wrap>div:after {
+        font-size: 16px;
+        width    : 26px;
+        height   : 26px;
+    }
+
+    // 下拉框
+    .xui-select.xui-select-style {
+        height     : @smallHeight-normal  !important;
+        line-height: @smallHeight-normal - 2px !important;
+
+        .xui-select-inputwrap {
+            height     : @smallHeight-normal;
+            font-size  : @smallSixe-normal;
+            min-height : @smallSixe-normal;
+            line-height: @smallHeight-normal - 2px;
+            margin-top : 0!important;
+
+        }
+
+        .xui-select-search {
+            height     : @smallHeight-normal - 2px !important;
+            line-height: @smallHeight-normal - 2px !important;
+
+        }
+
+        .xui-select-placeholder {
+            height: @smallHeight-normal;
+        }
+
+    }
+
+    .xui-picker.xui-picker-style.xui-select-picker .xui-select-option {
+        height     : @smallHeight-normal;
+        line-height: @smallHeight-normal - 2px;
+        font-size  : @smallSixe-normal;
+        padding    : 0px @smallPadding-right;
+    }
+
+    // 级联选择
+    .xui-cascader.xui-cascader-style {
+        .xui-cascader-inputwrap {
+            height     : @smallHeight-normal;
+            line-height: @smallHeight-normal - 2px;
+            font-size  : @smallSixe-normal;
+            padding    : 0px @smallPadding-right;
+        }
+
+        .xui-cascader-placeholder {
+            height     : @smallHeight-normal;
+            line-height: @smallHeight-normal - 2px;
+        }
+    }
+
+    .xui-picker.xui-picker-style.xui-cascader-picker .xui-cascader-dropdown .xui-cascader-option {
+        height     : @smallHeight-normal;
+        line-height: @smallHeight-normal - 2px;
+        font-size  : @smallSixe-normal;
+        padding    : 0px @smallPadding-right;
+    }
+
+    // 表单
+    .xui-form.xui-form-style {
+        .xui-field-label {
+            font-size: @smallSixe-normal  !important;
+        }
+    }
+
+    // 单选框
+    .xui-radio-group .xui-radio input[type="radio"]+i {
+        width : @smallSixe-normal;
+        height: @smallSixe-normal;
+    }
+
+    //   多选框
+    .xui-checkbox-group .xui-checkbox-inner {
+        width : @smallSixe-normal;
+        height: @smallSixe-normal;
+    }
+
+    // 树组织
+    .dag-tree {
+        .dag-tree-node {
+            height     : @smallHeight-normal  !important;
+            line-height: @smallHeight-normal  !important;
+
+            .dag-tree-node-label {
+                font-size: @smallSixe-normal  !important;
+            }
+        }
+    }
+
+    // 树
+    .xui-fasttree .xui-fasttree-node .xui-fasttree-checker {
+        width : @smallSixe-normal;
+        height: @smallSixe-normal;
+    }
+
+    .relevance_content .modal_tab .list .scroll-container .list_data .list-data-text {
+        height: @smallHeight-normal  !important;
+    }
+
+    // 按钮
+    .xui-btn.xui-btn-style {
+        font-size  : @smallSixe-normal;
+        height     : @smallHeight-normal + 2px !important;
+        line-height: @smallHeight-normal  !important;
+        padding    : 0 5px;
+    }
+
+    // 弹框
+    .xui-modal.xui-modal-style {
+        .xui-modal-header {
+            height     : @smallHeight-large + 2px;
+            line-height: @smallHeight-large + 2px;
+
+            .xui-modal-title {
+                padding: 0 @smallPadding-right;
+            }
+        }
+
+        .xui-modal-content>.xui-form {
+            >div>.xui-toolbar {
+                height     : @height-large + 5px;
+                line-height: @height-large + 5px;
+            }
+
+            >.form-row {
+                padding: @smallPadding-normal;
+            }
+        }
+
+        .xui-modal-footer .xui-toolbar {
+            height     : @height-large;
+            line-height: @height-large;
+        }
+    }
+
+    // 确认框
+    .global-confirm .global-confirm-box {
+        >header {
+            height     : @smallHeight-large  !important;
+            line-height: @smallHeight-large  !important;
+        }
+
+        >div {
+            padding: @smallPadding-normal  !important;
+
+            >p {
+                font-size: @smallSixe-normal  !important;
+            }
+        }
+
+        >footer {
+            height     : @height-large  !important;
+            line-height: @height-large  !important;
+        }
+    }
+
+    // // 模态框
+    // .xui-modal.xui-modal-style .xui-modal-box{
+    //     width: 600px!important;
+    // }
+    .relevance_content .xui-multiselect.xui-multiselect-style {
+        width: 100% !important;
+    }
+
+    // 多选
+    .xui-multiselect.xui-multiselect-style {
+        height     : @smallHeight-normal;
+        line-height: @smallHeight-normal - 2px;
+        width      : @smallwidth-normal  !important;
+
+        .multiselect-trigger {
+            height     : @smallHeight-normal;
+            font-size  : @smallSixe-normal;
+            line-height: @smallHeight-normal - 2px;
+
+            input {
+                height     : @smallHeight-normal;
+                line-height: @smallHeight-normal - 2px;
+                font-size  : @smallSixe-normal;
+            }
+        }
+
+    }
+
+    .xui-checkbox-group .xui-checkbox-small {
+        .xui-checkbox-label {
+            height     : @smallHeight-normal;
+            font-size  : @smallSixe-normal;
+            line-height: @smallHeight-normal - 2px;
+        }
+
+        .xui-checkbox-inner {
+            height: @smallSixe-normal;
+            width : @smallSixe-normal;
+
+            &:after {
+                top : -1px;
+                left: 2.5px;
+            }
+        }
+    }
+
+    .xui-multiselect-box .multiselect-options .multiselect-option {
+        height     : @smallHeight-normal;
+        line-height: @smallHeight-normal;
+    }
+
+    // 日历
+    .xui-datepicker.xui-datepicker-style {
+        height     : @smallHeight-normal + 2px;
+        line-height: @smallHeight-normal + 2px;
+
+        .date-input {
+            height: @smallHeight-normal + 2px;
+            line-height: @smallHeight-normal + 2px;
+
+            .time-input {
+                height     : @smallHeight-normal;
+                font-size  : @smallSixe-normal;
+                line-height: @smallHeight-normal - 2px;
+            }
+        }
+    }
+
+    // 开关按钮
+    .xui-switch.xui-switch-mini {
+        width : 20px;
+        height: 8px;
+
+        &::before {
+            top   : -4px;
+            left  : -2px;
+            width : 12px;
+            height: 12px;
+        }
+
+        &:checked&::before {
+            width : 12px;
+            height: 12px;
+            top   : -4px;
+            left  : 8px;
+        }
+    }
+
+    //表格
+    .xui-datatable.xui-datatable-style,
+    .modal-alarmInfo .table_defult {
+        thead>tr {
+            height: @smallHeight-large + 2px !important;
+
+            line-height: @smallHeight-large + 2px !important;
+
+
+            th {
+                height  : @smallHeight-large - 3px !important;
+                // width:40px!important;
+            }
+        }
+
+        tbody>tr {
+            height: @smallHeight-normal + 2px !important;
+
+            line-height: @smallHeight-normal + 2px !important;
+
+            td {
+                height  : @smallHeight-large - 3px !important;
+                // width:40px!important;
+            }
+        }
+
+
+
+        .xui-toolbar-style .xui-toolbar-item .xui-toolbar-icon {
+            font-size: @text-normal  !important;
+
+        }
+    }
+
+    .table_defult {
+        width: 100%;
+
+        thead>tr {
+            height     : @smallHeight-large - 4px !important;
+            line-height: @smallHeight-large - 4px !important;
+
+            th {
+                height: @smallHeight-large - 2px !important;
+            }
+        }
+
+        tbody>tr {
+
+            td {
+                height: @smallHeight-large  !important;
+
+                &>div {
+                    overflow     : hidden;
+                    white-space  : nowrap;
+                    text-overflow: ellipsis;
+                    min-width    : 20px;
+                }
+            }
+        }
+    }
+
+    //字体图标
+    .iconfont {
+        font-size: @text-normal - 2px !important;
+    }
+
+    // 分页
+    .xui-page.xui-page-style .page-item,
+    .xui-page.xui-page-style .page-nav:after {
+        font-size: @smallSixe-normal ;
+    }
+
+    .xui-page.xui-page-style .page-jump-next,
+    .xui-page.xui-page-style .page-jump-prev {
+        font-size: 0;
+    }
+
+
+    .toolbar_page {
+        height     : 40px !important;
+        line-height: 40px !important;
+
+        .toolbar.xui-toolbar,
+        .page_total {
+            height     : 40px !important;
+            line-height: 40px !important;
+        }
+    }
+
+    .filter_right_item .time-item {
+        line-height: 20px !important;
+        height     : 20px !important;
+        width      : 50px !important;
+        padding    : 0 6px;
+    }
+}

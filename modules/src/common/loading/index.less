@@ -1,0 +1,35 @@
+
+// 全局加载层
+.dag-load-loading {
+	position  : absolute;
+	top       : 0;
+	bottom    : 0;
+	left      : 0;
+	right     : 0;
+	background: rgba(0, 0, 0, 0.3);
+	z-index   : 999999;
+}
+
+.dag-load-ring {
+	width        : 10px;
+	position     : absolute;
+	top          : 50%;
+	left         : 50%;
+	margin-left  : -5px;
+	margin-top   : -5px;
+	height       : 10px;
+	padding      : 10px;
+	border-radius: 50%;
+	border       : 5px dashed #409eff;
+	animation    : load-ring 1.5s ease-out 0s infinite;
+}
+
+@keyframes load-ring {
+	50% {
+		transform: rotate(180deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

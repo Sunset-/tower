@@ -1,0 +1,157 @@
+{
+  "login": {
+    "name": "Login",
+    "module": "dag/modules/Login",
+    "meta": {}
+  },
+  "frame": {
+    "name": "Frameset",
+    "module": "dag/modules/Frameset",
+    "meta": {},
+    "path": "/",
+    "redirect": "Login"
+  },
+  "menu": [
+    {
+      "title": "统计报表",
+      "isPreview": true,
+      "name": "Statistics",
+      "icon": "iconfont iconctongjibaobiao",
+      "menu": [
+        {
+          "name": "DataStatistics",
+          "module": "dag/modules/DataStatistics",
+          "title": "接入转发统计",
+          "meta": {}
+        }
+      ]
+    },
+    {
+      "title": "运行监控",
+      "name": "Monitor",
+      "icon": "iconfont iconcyunweiguanli",
+      "menu": [
+        {
+          "title": "设备监控",
+          "name": "EquipmentMonitor",
+          "module": "dag/modules/EquipmentMonitor",
+          "meta": {}
+        }
+      ]
+    },
+    {
+      "title": "实时预览",
+      "name": "Preview",
+      "icon": "iconfont iconcyulanguanli",
+      "meta": {},
+      "isPreview": true,
+      "menu": [
+        {
+          "name": "VideoPreview",
+          "module": "dag/modules/VideoPreview",
+          "title": "视频预览",
+          "version": "",
+          "meta": {}
+        },
+        {
+          "name": "DataPreview",
+          "module": "dag/modules/DataPreview",
+          "title": "数据预览",
+          "version": "",
+          "meta": {}
+        }
+      ]
+    },
+    {
+      "title": "系统管理",
+      "name": "System",
+      "icon": "iconfont iconcyunweiguanli",
+      "menu": [
+        {
+          "name": "EquipmentManage",
+          "module": "dag/modules/EquipmentManage",
+          "title": "设备管理",
+          "version": "0.1",
+          "meta": {},
+          "children": [
+            {
+              "name": "EquipmentManageAdd",
+              "module": "dag/modules/EquipmentManageAdd",
+              "path": "/EquipmentManage/Add"
+            },
+            {
+              "name": "EquipmentManageEditor",
+              "module": "dag/modules/EquipmentManageEditor",
+              "path": "/EquipmentManage/Editor"
+            },
+            {
+              "name": "EquipmentManageGroup",
+              "module": "dag/modules/EquipmentManageGroup",
+              "path": "/EquipmentManage/Group"
+            }
+          ]
+        },
+        {
+          "name": "TaskManage",
+          "module": "dag/modules/TaskManage",
+          "title": "任务管理",
+          "meta": {}
+        },
+        {
+          "name": "ServiceUpgrade",
+          "module": "dag/modules/ServiceUpgrade",
+          "title": "服务升级",
+          "meta": {}
+        },
+        {
+          "name": "DictionaryMaintenance",
+          "module": "dag/modules/DictionaryMaintenance",
+          "version": "",
+          "title": "字典维护",
+          "meta": {}
+        }
+      ]
+    }
+  ],
+  "module": {
+    "dag/modules/Login": {
+      "version": "1.0"
+    },
+    "dag/modules/Frameset": {
+      "version": "1.0"
+    },
+    "dag/modules/DataStatistics": {
+      "version": "1.0"
+    },
+    "dag/modules/DataTrace": {
+      "version": "1.0"
+    },
+    "dag/modules/VideoPreview": {
+      "version": "1.0"
+    },
+    "dag/modules/DataPreview": {
+      "version": "1.0"
+    },
+    "dag/modules/EquipmentManage": {
+      "version": "1.0"
+    },
+    "dag/modules/EquipmentManageAdd": {
+      "version": "1.0"
+    },
+    "dag/modules/EquipmentManageEditor": {
+      "version": "1.0"
+    },
+    "dag/modules/EquipmentManageGroup": {
+      "version": "1.0"
+    },
+    "dag/modules/TaskManage": {
+      "version": "1.0"
+    },
+    "dag/modules/DictionaryMaintenance": {
+      "version": "1.0"
+    },
+    "dag/modules/ServiceUpgrade": {
+      "version": "1.0"
+    }
+  }
+}

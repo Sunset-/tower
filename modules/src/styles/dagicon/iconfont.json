@@ -1,0 +1,37 @@
+{
+  "id": "1767082",
+  "name": "dag2.0",
+  "font_family": "dagiconfont",
+  "css_prefix_text": "dagicon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10593790",
+      "name": "日志_jurassic",
+      "font_class": "log",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "13730130",
+      "name": "ConsoleOutline",
+      "font_class": "console",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "1305472",
+      "name": "任务",
+      "font_class": "renwu",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "4337765",
+      "name": "传输",
+      "font_class": "chuanshu",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    }
+  ]
+}

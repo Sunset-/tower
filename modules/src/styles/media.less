@@ -1,0 +1,831 @@
+// 小屏幕宽度
+@tiny-screen-width  : 1440px;
+@smallHeight-normal : 24px;
+@smallPadding-left  : 6px;
+@smallSixe-normal   : 12px;
+@smallPadding-right : 10px;
+@smallHeight-large  : 32px;
+@smallPadding-normal: 20px;
+@smallwidth-normal  : 160px;
+@height-small       : 25px;
+@height-normal      : 30px;
+@height-large       : 40px;
+
+@text-normal : 14px;
+@width-small : 100px;
+@width-normal: 200px;
+@width-large : 200px;
+
+.tiny-media(@max, @styles) {
+    @media screen and (max-width: @max) {
+        @styles();
+    }
+}
+
+.not-tiny-media(@min, @styles) {
+    @media screen and (min-width: @min) {
+        @styles();
+    }
+}
+
+.tiny-screen(@styles) {
+    .tiny-media(@tiny-screen-width, @styles)
+}
+
+.not-tiny-screen(@styles) {
+    .not-tiny-media(@tiny-screen-width, @styles)
+}
+
+@header-height-1366      : 40px;
+@sidebar-width-1366      : 150px;
+@sidebar-mini-width-1366 : 40px;
+@menu-item-height-1366   : 40px;
+@menu-submenu-height-1366: 140px;
+
+.tiny-screen( {
+        body {
+            font-size: 12px;
+        }
+
+        // 字体
+        .text-small {
+            font-size: 12px;
+        }
+
+        .text-normal {
+            font-size: 14px;
+        }
+
+        .text-big {
+            font-size: 16px;
+        }
+
+        .text-large {
+            font-size  : 18px;
+            font-weight: bold;
+        }
+
+        .number {
+            font-family: Bahnschrift;
+        }
+
+        .number-mini {
+            font-family: Bahnschrift;
+            font-size  : 12px;
+        }
+
+        .number-small {
+            font-family: Bahnschrift;
+            font-size  : 14px;
+        }
+
+        .number-normal {
+            font-family: Bahnschrift;
+            font-size  : 16px;
+        }
+
+        .number-big {
+            font-family: Bahnschrift;
+            font-size  : 20px;
+        }
+
+        .number-large {
+            font-family: Bahnschrift;
+            font-size  : 34px;
+        }
+
+        .app-container {
+            .app-header {
+                height     : @header-height-1366  !important;
+                line-height: @header-height-1366  !important;
+
+                .app-menu-item {
+                    height     : @menu-item-height-1366  !important;
+                    line-height: @menu-item-height-1366  !important;
+                    padding    :0 15px !important;
+                    font-size  : 14px !important;
+                }
+
+                .info .info-text::after {
+                    top:-10px;
+                }
+
+                .header-user {
+                    .header_down {
+                        >li {
+                            height     : 32px;
+                            line-height: 32px;
+                        }
+                    }
+                }
+
+
+                .app-logo {
+                    height     : @header-height-1366  !important;
+                    line-height: @header-height-1366  !important;
+
+                    .dag2-logo {
+                        margin-top :1px;
+                    }
+
+                    span {
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            .app-content {
+                .app-sidebar {
+                    top        :@header-height-1366;
+                    height     : @header-height-1366;
+                    line-height: @header-height-1366;
+                    width      : @sidebar-width-1366 ;
+                    height     : 100%;
+
+                    &.mini {
+                        width : @sidebar-mini-width-1366;
+                    }
+                }
+
+                .app-major {
+                    left:40px;
+                }
+            }
+
+
+            .app-menu {
+                li {
+                    .app-submenu {
+                        width: @menu-submenu-height-1366;
+
+                        .app-menu-item {
+                            &>span {
+                                left:15px;
+                            }
+                        }
+
+                    }
+
+                    .app-menu-item {
+                        height     : @menu-item-height-1366;
+                        line-height: @menu-item-height-1366;
+
+                        &>span {
+                            font-size: 14px;
+                        }
+
+                        & > i {
+                            width    : @sidebar-mini-width-1366;
+                            font-size: 18px !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .MODULE-CONTAINER {
+            top:10px;
+
+            .MODULE-MAJOR {
+                top:40px !important;
+            }
+
+            .MODULE-MAJOR-CONTENT {
+                top: 0px;
+
+                // .table.xui-datatable-table  {
+                //     tbody > tr td, thead > tr th {
+                //         width:120px !important;
+
+                //     }
+
+                //     &+.xui-scroll {
+                //         height:520px !important;
+
+                //     }
+                // }
+
+                .PANEL-TABLE {
+                    top:40px;
+                }
+
+                // 面板布局
+                .PANEL {
+                    top:40px;
+
+                    // herder标签
+                    & > header {
+                        height      : 40px;
+                        line-height : 40px;
+                        padding-left: 20px;
+                    }
+
+
+                }
+
+                // 全屏容器标签
+                .PANEL-CONTAINER {
+                    padding-top   : 5px;
+                    padding-left  : 15px;
+                    padding-right : 15px;
+                    padding-bottom: 5px;
+                }
+
+                // 带按钮标签
+                .PANEL-BUTTON {
+                    padding-top   : 0px;
+                    padding-left  : 15px;
+                    padding-right : 15px;
+                    padding-bottom: 0px;
+                }
+
+                // 按钮标签下侧容器
+                .PANEL-BUTTON-CONTAINER {
+                    padding-top   : 0px;
+                    padding-left  : 15px;
+                    padding-right : 15px;
+                    padding-bottom: 5px;
+
+                }
+
+                // 带搜索框布局
+                .PANEL-SEARCH {
+                    height: 40px;
+                }
+
+                .PANEL-SEARCH-CONTAINER {
+                    top: 40px !important; ;
+                }
+
+            }
+        }
+
+        // 首页
+        .MODULE-CONTAINER.MODULE-Home {
+            .home-summary-tables .xui-datatable.xui-datatable-style {
+                top   :50px;
+                left  :15px;
+                bottom:15px;
+                right :15px;
+
+                > .xui-loading.xui-loading-style > .xui-scroll.xui-scroll-style {
+                    top:37px;
+                }
+            }
+
+            .Home_top {
+                height:140px;
+
+                .Home_top_item {
+                    padding:10px;
+
+                    .number {
+                        font-size: 36px;
+                    }
+
+                    .accessNumber {
+                        font-size: 22px;
+                    }
+
+
+                    .title {
+                        font-size: 18px;
+                    }
+
+                    .tips {
+                        >p {
+                            margin:5px;
+                        }
+                    }
+
+                    .count .count_item {
+                        .icon-arrow-up::after, .icon-arrow-down::after {
+                            width :16px;
+                            height: 16px;
+                        }
+
+                        .text.diff-accessNumber {
+                            font-size: 12px;
+                        }
+
+                        .text {
+                            font-size: 14px;
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        .MODULE-StructuredStatistics {
+
+            .data-statistics-major {
+                .accessStatistics_chart {
+                    top: 50px !important;
+                }
+            }
+        }
+
+        .MODULE-link-monitor-alarm-modal .alarm_table {
+            height: 350px;
+
+            .more-trigger {
+                height     : 30px;
+                line-height: 30px;
+            }
+        }
+
+        //节点
+        .nodemanage-detail-container.MODULE-MAJOR-CONTENT .node-baseinfo-container {
+            padding:0 !important;
+
+            .node-baseinfo .node-baseinfo-title {
+                padding-left:45px !important;
+            }
+        }
+
+        .MODULE-CONTAINER.MODULE-Access .sub-access-task {
+            padding: 10px 10px 10px 300px;
+        }
+
+        // 设备管理
+        .group-list .EquipmentGroup {
+            top: 95px;
+        }
+
+        .MODULE-CONTAINER.MODULE-equipment {
+            .xui-datapage.xui-datapage-style {
+
+                >.xui-loading.xui-loading-style {
+                    .xui-scroll.xui-scroll-style {
+                        height: 520px !important;
+                    }
+                }
+            }
+
+            .xui-datatable.xui-datatable-style tr th,
+            .xui-datatable.xui-datatable-style tr td {
+                width: 80px !important;
+            }
+
+            .MODULE-MAJOR-CONTENT .singleNode-VERTICAL-RIGHT {
+                top: 40px;
+            }
+        }
+
+        // 字典维护
+        .MODULE-dictionary .dictionary_content .scroll-container .content .list .list_content,
+        .EquipmentGroup .VERTICAL-LEFT .scroll-container .content .list .list_content {
+            height     : @height-normal  !important;
+            line-height: @height-normal  !important;
+            font-size  : @smallSixe-normal;
+        }
+
+        // 硬件监控
+        .MODULE-CONTAINER.MODULE-HardwareMonitor {
+            .hard-content .HardwareMonitor_right .hard-right-top {
+                height: 180px;
+
+                .config-info-left .config-info-left-item {
+                    font-size  : @smallSixe-normal ;
+                    line-height: 25px;
+                    height     : 25px;
+                }
+            }
+
+            .hard-content .HardwareMonitor_right .hard_Disk-detail .hard_Disk-detail-table {
+                height: 130px;
+            }
+
+            .config-title,
+            .chart-title {
+                height     : 30px;
+                line-height: 30px;
+                font-size  : 14px;
+            }
+        }
+
+        //软件监控
+        .MODULE-CONTAINER.MODULE-SoftwareMonitor {
+
+            .config-title,
+            .MODULE-SoftwareMonitor .config-title,
+            .chart-title {
+                height     : 30px;
+                line-height: 30px;
+                font-size  : 14px;
+            }
+
+            .xui-datatable.xui-datatable-style tbody>tr td {
+                font-size: 12px;
+            }
+        }
+
+        //登录
+        .appLogin.login-container .login-form {
+            width      : 320px;
+            height     : 300px;
+            padding    : 30px 30px 0;
+            margin-left: -200px;
+            margin-top : -165px;
+
+            .login-title {
+                font-size: 20px;
+
+                .dag2-logo {
+                    padding: 0;
+                }
+            }
+
+            .login-content {
+
+                .xui-toolbar .xui-btn.xui-btn-style.xui-btn-primary,
+                .login-container .xui-toolbar-item .xui-btn.xui-btn-style.xui-btn-primary {
+                    font-size  : 16px;
+                    height     : 30px;
+                    line-height: 30px;
+                }
+
+                .xui-input.xui-input-style .xui-input-inner {
+                    height     : 30px;
+                    line-height: 30px;
+                }
+
+                .userName:after,
+                .password:after {
+                    top: 14px;
+                }
+            }
+
+
+        }
+
+        .MODULE-Home .Home_content .fliter .xui-tabs.xui-tabs-style.tabs {
+            height: 32px;
+        }
+
+        // 数据统计 结构化统计
+        .MODULE-DataStatistics .data-statistics-major .accessStatistics_title,
+        .MODULE-DataStatistics .data-statistics-major .TransmitStatistics_title,
+        .MODULE-StructuredStatistics .data-statistics-major .accessStatistics_title,
+        .MODULE-StructuredStatistics .data-statistics-major .TransmitStatistics_title,
+        .MODULE-DataAnomalyStatistics .data-statistics-major .accessStatistics_title,
+        .MODULE-StructuredStatistics .data-statistics-major .report_title {
+            font-size  : @smallSixe-normal  !important;
+            height     : @height-large  !important;
+            line-height: @height-large  !important;
+        }
+
+        .MODULE-CONTAINER.MODULE-DataStatistics .data-statistics-major .accessStatistics_chart .accessStatistics_chart_accessChart {
+            min-height: calc(100% - 35px);
+        }
+
+        .MODULE-CONTAINER.MODULE-DataStatistics .data-statistics-major .TransmitStatistics_chart .TransmitStatistics_chart_transmitchart {
+            min-height: calc(100% - 75px);
+        }
+
+        .MODULE-StructuredStatistics .data-statistics-major .filter_right_item .filter_right_item_value,
+        .MODULE-DataAnomalyStatistics .data-statistics-major .filter_right_item .filter_right_item_value,
+        .MODULE-DataStatistics .data-statistics-major .filter_right_item .filter_right_item_value {
+            width      : 60px !important;
+            height     : 20px !important;
+            line-height: 20px !important;
+        }
+
+        .MODULE-DataStatistics .data-statistics-major .filter_right_item {
+            height     : 40px !important;
+            line-height: 40px !important;
+        }
+
+        .MODULE-DataStatistics .data-statistics-major .accessStatistics_chart .chart-title,
+        .MODULE-DataStatistics .data-statistics-major .TransmitStatistics_chart .chart-title {
+            font-size: @smallSixe-normal + 2px !important;
+        }
+
+        .MODULE-DataStatistics .data-statistics-major .TransmitStatistics_chart .chart-title {
+            top: 95px !important;
+        }
+
+        .MODULE-DataStatistics .selectAccess,
+        .select-title {
+            height     : @height-large  !important;
+            line-height: @height-large  !important;
+        }
+
+        .TransmitStatistics_chart .TransmitStatistics_chart-tab,
+        .xui-tabs.xui-tabs-style .xui-tab-item {
+            height: 35px !important;
+        }
+
+        .xui-tabs.xui-tabs-style .xui-tab-item {
+            line-height: 35px !important;
+            font-size  : @smallSixe-normal;
+        }
+
+        // .xui-filter.xui-filter-style .xui-form-field {
+        //     min-height: 30px;
+        //     height    : 30px;
+        // }
+
+        .xui-filter.xui-filter-style .xui-form-field .xui-field-label {
+            font-size: @smallSixe-normal;
+        }
+
+        // .xui-form .xui-form-field {
+        //     min-height: 30px;
+        // }
+
+        //数据追踪
+        .MODULE-CONTAINER.Module-DataTrace {
+            .NOTRANSMIT {
+                top: 147px;
+            }
+
+            .dag-datatable-container.TRANSMIT {
+                top: 45px;
+            }
+
+            .showTransformDetail {
+                top: 40px;
+            }
+
+        }
+
+        // 数据报表
+        .MODULE-CONTAINER.MODULE-StructuredStatistics .data-statistics-major {
+            .report_container {
+                top: 40px;
+            }
+
+            .report_title {
+                min-width: 100%;
+            }
+
+            .report_container {
+                min-width: 100%;
+            }
+        }
+
+        // 首页
+        .MODULE-CONTAINER.MODULE-Home {
+            .Home_statistics .eq_table .more-trigger {
+                height     : @smallHeight-large - 2px;
+                line-height: @smallHeight-large - 2px;
+            }
+
+            .Home_content .chart .data-statistics-chart>.data-statistics-total {
+                font-size: 16px;
+            }
+
+            .Home_statistics .eq_statistics .access-type-content .access-type-item {
+                .item-info-wrap {
+                    .item-info-top {
+                        height     : 20px;
+                        line-height: 20px;
+
+                    }
+
+                    .percent-al {
+                        width: 80% !important;
+                        top  : 5px;
+                    }
+
+                    .item-radio {
+                        bottom: -5px;
+                        right : -8px;
+                    }
+                }
+
+                .item-percent {
+                    height: 4px;
+                    height: 4px;
+                }
+            }
+        }
+
+        .abortModal.abortModal_mini.xui-modal.xui-modal-style {
+            .xui-modal-box {
+                width: 450px;
+            }
+
+            .dag2-logo {
+                position: absolute;
+                left    : 20%;
+                top     : 32px;
+            }
+
+            .abortModal_content {
+                .about-img {
+                    width : 100%;
+                    height: 120px;
+                }
+
+                .about-text {
+                    height  : 120px;
+                    position: relative;
+
+                    .logo {
+                        display: none;
+                    }
+
+                    .logo_mini {
+                        display: block;
+                    }
+                }
+
+                .about-footer {
+                    display: none;
+                }
+
+                .about-footer_mini {
+                    display: block;
+                    margin : 0 auto 10px auto;
+                }
+
+                .abortModal_content_text {
+                    text-align    : left;
+                    vertical-align: middle;
+                    position      : absolute;
+                    left          : 40%;
+                    top           : 26px;
+
+                    .text_title {
+                        width         : 100%;
+                        display       : inline-block;
+                        margin-bottom : 1rem;
+                        font-size     : 24px;
+                        width         : 100%;
+                        position      : relative;
+                        letter-spacing: 4px;
+                    }
+
+                    .text {
+                        width    : 100%;
+                        display  : inline-block;
+                        font-size: 12px;
+                        height   : 22px;
+                        color    : #1e2563;
+                    }
+                }
+            }
+        }
+
+
+        // 面包屑
+        .dag-breadcrumb .dag-breadcrumb-wrap {
+            height     : 30px !important;
+            line-height: 30px !important;
+            font-size  : @smallSixe-normal;
+
+            .dag-breadcrumb-click {
+                height     : 30px !important;
+                line-height: 30px !important;
+                padding    : 0 10px;
+            }
+
+            .dag-breadcrumb-content {
+                height     : 30px !important;
+                line-height: 30px !important;
+            }
+        }
+
+        // 数据预览
+        .MODULE-CONTAINER.MODULE-dataPreview .dag-orgmanage-wrap .orgtree-container .org-tree {
+            top: 75px;
+        }
+
+
+        .MODULE-CONTAINER.MODULE-equipment .MODULE-MAJOR-CONTENT .orgtree-container {
+            .group {
+                height: 40px;
+            }
+
+            .org-tree {
+                top: 120px;
+            }
+        }
+
+
+
+        .eq-add .add .channelTitle .car_title,
+        .eq-add .add .channelTitle {
+            font-size  : 14px;
+            height     : 30px;
+            line-height: 30px;
+        }
+
+        .eq-add .add .channelTitle {
+            .add_car_or_channel {
+                bottom: 4px;
+            }
+        }
+
+        .eq-add .add .xui-form.xui-form-style .form-row .group-title {
+            height     : 30px;
+            line-height: 30px;
+
+            span {
+                font-size: 14px;
+            }
+        }
+
+        .MODULE-CONTAINER.MODULE-equipment .MODULE-MAJOR-CONTENT .VERTICAL-RIGHT .VERTICAL-SEARCH {
+            top: -9px;
+        }
+
+
+        .xui-modal-content .transmit-detail-container,
+        .access-detail-container,
+        .xui-modal-content .relevance_content,
+        .transmit-detail-container .transmit-resource-wrap .resource.relevance_content,
+        .access-detail-container .xui-scroll.xui-scroll-style.access-platform,
+        .xui-modal-content .access-detail-container .access-resource-wrap,
+        .xui-modal-content .transmit-detail-container .transmit-platform {
+            height: 440px;
+        }
+
+
+        .access-resource-wrap .relevance_content .modal_tab .list .scroll-container,
+        .resource.relevance_content .modal_tab .list,
+        .relevance_content .modal_tab .list .xui-scroll.xui-scroll-style,
+        .transmit-detail-container .transmit-resource-wrap .PLATFORM-scroll {
+            height: 360px !important;
+        }
+
+
+        // 数据报表
+        .MODULE-CONTAINER.MODULE-DataReport {
+            .filter-wrap {
+                height: 40px;
+            }
+
+            .data-statistics-major {
+                .filter_right_item {
+                    .filter_right_item_value {
+                        width      : 60px;
+                        height     : 20px;
+                        line-height: 20px;
+                    }
+                }
+            }
+
+            .Module-ResourceStatistics {
+                top: 30px;
+
+                .ResourceStatistics-table {
+                    top: 90px;
+                }
+
+                .xui-scroll {
+                    .scrollpane {
+                        .scrollview {
+                            height: 450px;
+                        }
+                    }
+                }
+            }
+
+            .Module-nodeStatistics {
+                top: 30px;
+
+                .nodeStatistics-table {
+                    top: 90px;
+                }
+
+                .xui-scroll {
+                    .scrollpane {
+                        .scrollview {
+                            height: 480px;
+                        }
+                    }
+                }
+            }
+
+
+
+            .MODULE-DataReport-DataStatistics {
+                .report_container {
+                    top: 80px;
+                }
+
+                .report_title {
+                    height     : 40px;
+                    line-height: 40px;
+                    font-size  : 12px;
+                }
+            }
+
+        }
+
+        //组件模态框高度
+        .component-modal .scroll-container {
+            height:445px !important;
+        }
+
+        .MODULE-CONTAINER.component-detail-container .MODULE-MAJOR.component-detail-major {
+            top:0px!important;
+        }
+    }
+
+);
