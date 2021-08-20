@@ -1,7 +1,8 @@
 <template>
     <div class="MODULE-CONTAINER MODULE-Equipment">
         <div class="MODULE-LEFT-SIDE">
-            <xui-filter class="left_filter" ref="filter" :options="treeFilterOptions" @filter="searchTree"></xui-filter>
+            <xui-filter class="left_filter" ref="treeFilter" :options="treeFilterOptions" @filter="searchTree">
+            </xui-filter>
             <div class="left-tree-container">
                 <dag-tree ref="tree" :options="equipmentTree" @inited="treeInited" @selected="onSelected"></dag-tree>
             </div>
@@ -33,8 +34,8 @@
         <equipment-detail v-show="page=='DETAIL'" ref="detail" @close="closeDetail" @refresh="refresh">
         </equipment-detail>
         <!-- 批量 -->
-        <equipment-batchadd v-show="page=='BATCH'" ref="batch" @close="closeDetail" @refresh="refresh">
-        </equipment-batchadd>
+        <!-- <equipment-batchadd v-show="page=='BATCH'" ref="batch" @close="closeDetail" @refresh="refresh">
+        </equipment-batchadd> -->
         <!-- 历史 -->
         <equipment-history ref="history" @refresh="refresh"></equipment-history>
         <!-- 参数编辑 -->
@@ -50,7 +51,7 @@ const $tools = $import("dag/common/tools");
 
 import EquipmentDetail from "./detail.vue";
 import EquipmentHistory from "./history.vue";
-import EquipmentBatchadd from "./batchadd.vue";
+// import EquipmentBatchadd from "./batchadd.vue";
 // import EquipmentParams from "./params.vue";
 
 import Store from "./store";
@@ -59,7 +60,7 @@ export default {
     components: {
         EquipmentDetail,
         EquipmentHistory,
-        EquipmentBatchadd,
+        // EquipmentBatchadd,
         // EquipmentParams,
         DagTree: $import("dag/components/Tree").Component,
     },
@@ -109,9 +110,9 @@ export default {
                 filterEmpty: true,
                 fields: [
                     {
-                        name: "deviceSN",
+                        name: "deviceName",
                         widget: "input",
-                        placeholder: "请输入设备SN",
+                        placeholder: "请输入设备名称",
                     },
                     {
                         name: "deviceStatus",
@@ -206,6 +207,34 @@ export default {
                         },
                     },
                     {
+                        title: "启用状态",
+                        name: "deviceStatus",
+                        toolbar: [
+                            {
+                                size: "mini",
+                                type: "switch",
+                                color: "primary",
+                                default(record) {
+                                    return record.deviceStatus != "3";
+                                },
+                                disabled() {
+                                    return !$business.checkPermission(
+                                        "Equipment_Status"
+                                    );
+                                },
+                                operate: (record) => {
+                                    var p = JSON.parse(JSON.stringify(record));
+                                    p.deviceStatus =
+                                        p.deviceStatus == "3" ? "1" : "3";
+                                    return Store.save(p).then(() => {
+                                        $tip("修改成功", "success");
+                                        record.deviceStatus = p.deviceStatus;
+                                    });
+                                },
+                            },
+                        ],
+                    },
+                    {
                         title: "最后上线时间",
                         name: "lastTime",
                         format: "DATETIME",
@@ -273,9 +302,9 @@ export default {
                     pageSize: "pageSize",
                 },
                 datasource: (filter) => {
-                    filter.groupId =
-                        this.currentGroup && this.currentGroup.groupId;
-                    if (!filter.groupId) {
+                    filter.projectId =
+                        this.currentGroup && this.currentGroup.projectId;
+                    if (!filter.projectId) {
                         return {
                             total: 0,
                             list: [],
@@ -295,9 +324,9 @@ export default {
     },
     methods: {
         treeInited(at) {
-            if (this.$route.query.groupId) {
+            if (this.$route.query.projectId) {
                 this.$refs.tree.clearSelected();
-                this.$refs.tree.selectNode(this.$route.query.groupId, true);
+                this.$refs.tree.selectNode(this.$route.query.projectId, true);
             }
         },
         onSelected(n) {

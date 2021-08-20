@@ -1,5 +1,5 @@
 <template>
-    <div class="MODULE-CONTAINER MODULE-EquipmentGroup">
+    <div class="MODULE-CONTAINER MODULE-Project">
         <div class="MODULE-MAJOR-CONTENT" v-show="page=='LIST'">
             <!-- 搜索条件 -->
             <div class="PANEL-SEARCH-TOOLBAR">
@@ -69,7 +69,7 @@ export default {
                     {
                         label: "新增",
                         icon: "iconfont iconxinzeng",
-                        permission : "EquipmentGroup_Add",
+                        permission : "Project_Add",
                         color: "primary",
                         operate: () => {
                             this.edit();
@@ -90,12 +90,12 @@ export default {
                     },
                     {
                         title: "项目名称",
-                        name: "groupName",
+                        name: "projectName",
                         align: "center",
                     },
                     {
                         title: "项目地址",
-                        name: "deviceType",
+                        name: "address",
                         align: "center",
                     },
                     {
@@ -120,12 +120,12 @@ export default {
                     },
                     {
                         title: "产权单位",
-                        name: "ownerUnit",
+                        name: "propertyRightParty",
                         align: "center",
                     },
                     {
                         title: "产权单位联系人",
-                        name: "contacts",
+                        name: "propertyRightPerson",
                         align: "center",
                     },
                     {
@@ -136,16 +136,16 @@ export default {
                                 label: "查看",
                                 size: "mini",
                                 color: "primary-text",
-                                permission : "EquipmentGroup_Modify",
+                                permission : "Project_Modify",
                                 operate: (record) => {
-                                    this.edit(record);
+                                    this.edit(record,true);
                                 },
                             },
                             {
                                 label: "编辑",
                                 size: "mini",
                                 color: "primary-text",
-                                permission : "EquipmentGroup_Modify",
+                                permission : "Project_Modify",
                                 operate: (record) => {
                                     this.edit(record);
                                 },
@@ -154,7 +154,7 @@ export default {
                                 label: "设备参数列表",
                                 size: "mini",
                                 color: "warning-text",
-                                permission : "EquipmentGroup_Modify",
+                                permission : "Project_Modify",
                                 operate: (record) => {
                                     this.$refs.eqs.open(record);
                                 },
@@ -163,9 +163,9 @@ export default {
                                 label: "删除",
                                 size: "mini",
                                 color: "danger-text",
-                                permission : "EquipmentGroup_History",
+                                permission : "Project_History",
                                 operate: (record) => {
-                                    this.history(record);
+                                    this.remove(record);
                                 },
                             },
                         ],
@@ -208,8 +208,8 @@ export default {
                 })
             }
         },
-        edit(model) {
-            this.$refs.detail.open(model);
+        edit(model,view) {
+            this.$refs.detail.open(model,view);
         },
         // 搜索
         search(filter) {
@@ -227,7 +227,9 @@ export default {
         // 删除
         remove(data) {
             $confirm(`确定删除？`).then(() => {
-                Store.remove(data.id).then((res) => {
+                Store.remove({
+                    recordId : data.projectId
+                }).then((res) => {
                     $tip("删除成功", "success");
                     this.refresh();
                 });
@@ -241,7 +243,7 @@ export default {
 </script>
 <style lang="less">
 @import "~style/variable.less";
-.MODULE-EquipmentGroup {
+.MODULE-Project {
     .xui-datapage.xui-datapage-style .xui-datapage-footer {
         position: relative;
         bottom: 0;

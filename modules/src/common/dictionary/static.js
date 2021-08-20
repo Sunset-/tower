@@ -31,7 +31,11 @@ module.exports = {
 		{
 			text: "在线",
 			value: "2",
-		}
+		},
+		{
+			text: "禁用",
+			value: "3",
+		},
 	],
 	CHANNEL_DATA_TYPE: [
 		{ text: "无类型", value: "0" },

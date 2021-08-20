@@ -25,17 +25,10 @@ export default {
                     },
                     {
                         label: "项目",
-                        name: "groupId",
-                        widget: "equipmentgroupselector",
+                        name: "projectId",
+                        widget: "projectselector",
                         placeholder: "请选择项目",
                         type: "1",
-                        watch: [
-                            "deviceType",
-                            (model, options) => {
-                                options.type = model.deviceType;
-                                model.groupId = "";
-                            },
-                        ],
                         validate: {
                             required: true,
                         },
@@ -101,21 +94,21 @@ export default {
                             maxlength: 64,
                         },
                     },
-                    {
-                        group: "设备资源",
-                        label: "服务到期日",
-                        name: "expireDate",
-                        widget: "datetime",
-                        placeholder: "请输入服务到期日",
-                        valueformat: "timestamp",
-                        manner: "datetime-single",
-                        premise(model) {
-                            return model.deviceId;
-                        },
-                        validate: {
-                            required: true,
-                        },
-                    },
+                    // {
+                    //     group: "设备资源",
+                    //     label: "服务到期日",
+                    //     name: "expireDate",
+                    //     widget: "datetime",
+                    //     placeholder: "请输入服务到期日",
+                    //     valueformat: "timestamp",
+                    //     manner: "datetime-single",
+                    //     premise(model) {
+                    //         return model.deviceId;
+                    //     },
+                    //     validate: {
+                    //         required: true,
+                    //     },
+                    // },
                     // {
                     //     label: "数据容量（MB）",
                     //     name: "dataCapacity",
@@ -130,18 +123,18 @@ export default {
                     // },
                 ],
                 cast(model) {
-                    if (model.groupId && model.groupName) {
-                        model.groupId = `${model.groupId},${model.groupName}`;
+                    if (model.projectId && model.projectName) {
+                        model.projectId = `${model.projectId},${model.projectName}`;
                     }
                 },
                 format(model) {
                     if (Sunset.isObject(model.expireDate)) {
                         model.expireDate = model.expireDate.getTime();
                     }
-                    if (model.groupId && model.groupId.indexOf(",") > 0) {
-                        var gid = model.groupId;
-                        model.groupId = gid.substring(0, gid.indexOf(","));
-                        model.groupName = gid.substring(gid.indexOf(",") + 1);
+                    if (model.projectId && model.projectId.indexOf(",") > 0) {
+                        var gid = model.projectId;
+                        model.projectId = gid.substring(0, gid.indexOf(","));
+                        model.projectName = gid.substring(gid.indexOf(",") + 1);
                     }
                 },
             },
@@ -155,7 +148,7 @@ export default {
             Store.save(model).then(() => {
                 $tip("保存成功", "success");
                 this.$emit("refresh", {
-                    id: model.groupId,
+                    id: model.projectId,
                 });
             });
         },

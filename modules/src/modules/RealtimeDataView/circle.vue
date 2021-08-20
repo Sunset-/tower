@@ -20,18 +20,22 @@ export default {
             var r = this.data.l;
             var left = this.data.x - this.basePoint.minX;
             var top = this.data.y - this.basePoint.minY;
-            return `width:${r * 2/this.basePoint.ratio}px;height:${
-                r * 2/this.basePoint.ratio
-            }px;top:${top/this.basePoint.ratio}px;left:${left/this.basePoint.ratio}px;`;
+            return `width:${(r * 2) / this.basePoint.ratio}px;height:${
+                (r * 2) / this.basePoint.ratio
+            }px;top:${top / this.basePoint.ratio}px;left:${
+                left / this.basePoint.ratio
+            }px;`;
         },
         handStyle() {
-            return `width:${this.data.l/this.basePoint.ratio}px;transform:translate(0,-1px) rotate(${this.data.r}deg);`;
+            return `width:${
+                this.data.l / this.basePoint.ratio
+            }px;transform:translate(0,-1px) rotate(${this.data.r}deg);`;
         },
         pointStyle() {
-            return `left:${this.data.f/this.basePoint.ratio}px;`;
+            return `left:${this.data.f / this.basePoint.ratio}px;`;
         },
         tailStyle() {
-            return `width:${this.data.t/this.basePoint.ratio}px;`;
+            return `width:${this.data.t / this.basePoint.ratio}px;`;
         },
     },
 };
@@ -59,6 +63,7 @@ export default {
             border-radius: 10px;
             margin-left: -1px;
             margin-top: -1px;
+            transition: all 0.3s ease;
         }
         .device-circle-tail {
             position: absolute;

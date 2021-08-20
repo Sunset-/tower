@@ -10,7 +10,7 @@ $import.regist("dag/modules/Frameset", require("../modules/src/modules/Frameset/
 
 $import.regist("dag/modules/Login", require("../modules/src/modules/Login/index.js"));
 $import.regist("dag/modules/Home", require("../modules/src/modules/Home/index.js"));
-$import.regist("dag/modules/EquipmentGroup", require("../modules/src/modules/EquipmentGroup/index.js"));
+$import.regist("dag/modules/Project", require("../modules/src/modules/Project/index.js"));
 $import.regist("dag/modules/Equipment", require("../modules/src/modules/Equipment/index.js"));
 $import.regist("dag/modules/EquipmentRegist", require("../modules/src/modules/EquipmentRegist/index.js"));
 $import.regist("dag/modules/UserManage", require("../modules/src/modules/UserManage/index.js"));
@@ -30,7 +30,7 @@ $import.regist("dag/components/Date", require("../modules/src/components/Date/in
 $import.regist("dag/components/Edittable", require("../modules/src/components/Edittable/index.js"));
 $import.regist("dag/components/ImageViewer", require("../modules/src/components/ImageViewer/index.js"));
 $import.regist("dag/components/Tree", require("../modules/src/components/Tree/index.js"));
-$import.regist("dag/components/EquipmentGroupSelector", require("../modules/src/components/EquipmentGroupSelector/index.js"));
+$import.regist("dag/components/ProjectSelector", require("../modules/src/components/ProjectSelector/index.js"));
 $import.regist("dag/components/EquipmentSelector", require("../modules/src/components/EquipmentSelector/index.js"));
 $import.regist("dag/components/Triple", require("../modules/src/components/Triple/index.js"));
 $import.regist("dag/components/Map", require("../modules/src/components/Map/index.js"));

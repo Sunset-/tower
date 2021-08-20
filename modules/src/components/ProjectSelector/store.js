@@ -1,7 +1,7 @@
 const $http = $import("dag/common/http");
 
 const URLS = {
-	LIST: "/api/m/device/group/query",
+	LIST: "/api/m/project/info/query",
 };
 
 export default{

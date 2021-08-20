@@ -23,12 +23,12 @@ module.exports = (config) => ({
 	disableHostCheck: true,
 	proxy: {
 		"/api//*": {
-			// target: "http://120.78.161.176:8030/",
-			target: "http://www.qg-lot.com:8090/",
+			target: "http://120.78.161.176:8050/",
+			// target: "http://www.qg-lot.com:8090/",
 			// target: "http://192.168.1.118:8060/",
-			// pathRewrite: {
-			// 	"^/api": "/",
-			// },
+			pathRewrite: {
+				"^/api": "/",
+			},
 			secure: false,
 			changeOrigin: true,
 		},

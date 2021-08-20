@@ -7,7 +7,7 @@ Promise.all([
   $import.sync("dag/common"), //同步加载
   $import("dag/components/Date"),
   $import("dag/components/Edittable"),
-  $import("dag/components/EquipmentGroupSelector"),
+  $import("dag/components/ProjectSelector"),
   $import("dag/components/EquipmentSelector"),
   $import("dag/components/Triple"),
   $import("dag/components/MapMarker"),
@@ -19,7 +19,7 @@ Promise.all([
     ,
     dateWidget,
     editTable,
-    equipmentGroupSelector,
+    projectSelector,
     equipmentSelector,
     triple,
     MapMarker,
@@ -35,8 +35,8 @@ Promise.all([
       editTable.Component.default
     );
     SukiiXUI.Component.registFormField(
-      "equipmentgroupselector",
-      equipmentGroupSelector.Field.default
+      "projectselector",
+      projectSelector.Field.default
     );
     SukiiXUI.Component.registFormField(
       "equipmentselector",

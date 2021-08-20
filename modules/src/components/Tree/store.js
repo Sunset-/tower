@@ -2,7 +2,7 @@ const $http = $import("dag/common/http");
 const $dictionary = $import("dag/common/dictionary");
 
 const URLS = {
-	GROUP_LIST: "/api/m/device/group/query", // 卡口列表
+	GROUP_LIST: "/api/m/project/info/query", // 卡口列表
 	EQLIST: "/api/m/device/info/query", // 设备列表
 };
 
@@ -18,9 +18,9 @@ export default {
 			res &&
 				res.list &&
 				res.list.forEach((item) => {
-					item.id = item.groupId;
+					item.id = item.projectId;
 					item.parentId = "0";
-					item.name = item.groupName;
+					item.name = item.projectName;
 					item.type = "group";
 					nodes.push(item);
 					if (item.list) {
@@ -28,8 +28,8 @@ export default {
 							device.id = device.deviceId;
 							device.parentId = item.id;
 							device.name = device.deviceName;
-							device.groupName = item.groupName;
-							device.groupId = item.groupId;
+							device.projectName = item.projectName;
+							device.projectId = item.projectId;
 							device.type = "device";
 							//channel
 							device.channels = [];
@@ -54,7 +54,7 @@ export default {
 			data: {
 				pageIndex: 1,
 				pageSize: 99999,
-				groupId: group.id,
+				projectId: group.id,
 				isActive: 1,
 			},
 		}).then((res) => {

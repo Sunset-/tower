@@ -142,7 +142,7 @@ export default {
                     {
                         label: "所属项目",
                         name: "groupId",
-                        widget: "equipmentgroupselector",
+                        widget: "projectselector",
                         placeholder: "请选择项目",
                         type: "1",
                         watch: [

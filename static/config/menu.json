@@ -29,29 +29,29 @@
 			"menu": [
 				{
 					"title": "项目管理",
-					"name": "EquipmentGroup",
-					"module": "dag/modules/EquipmentGroup",
+					"name": "Project",
+					"module": "dag/modules/Project",
 					"icon": "iconfont iconcshouye",
 					"funcs": [
 						{
 							"title": "新增",
-							"name": "EquipmentGroup_Add"
+							"name": "Project_Add"
 						},
 						{
 							"title": "状态变更",
-							"name": "EquipmentGroup_Status"
+							"name": "Project_Status"
 						},
 						{
 							"title": "编辑",
-							"name": "EquipmentGroup_Modify"
+							"name": "Project_Modify"
 						},
 						{
 							"title": "查看编辑记录",
-							"name": "EquipmentGroup_History"
+							"name": "Project_History"
 						}
 					],
 					"meta" : {
-						"permission" : "EquipmentGroup" 
+						"permission" : "Project" 
 					}
 				},
 				{
@@ -186,11 +186,11 @@
 				},
 				{
 					"title": "工作记录查看",
-					"name": "WorkDataViewView",
-					"module": "dag/modules/WorkDataViewView",
+					"name": "WorkDataView",
+					"module": "dag/modules/WorkDataView",
 					"icon": "iconfont iconcshouye",
 					"meta" : {
-						"permission" : "WorkDataViewView" 
+						"permission" : "WorkDataView" 
 					}
 				}
 			]

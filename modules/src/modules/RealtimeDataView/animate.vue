@@ -1,5 +1,5 @@
 <template>
-    <xui-modal ref="modal" title="设备动画查看" width="1200">
+    <xui-modal ref="modal" title="设备动画查看" width="1240">
         <div class="device-animate-container">
             <device-circle v-for="(item,index) in items" :key="index" :basePoint="basePoint" :data="item">
             </device-circle>
@@ -35,6 +35,14 @@ export default {
                 {
                     x: 340,
                     y: 140,
+                    l: 90,
+                    t: 10,
+                    f: 40,
+                    r: 50,
+                },
+                {
+                    x: 440,
+                    y: 340,
                     l: 90,
                     t: 10,
                     f: 40,

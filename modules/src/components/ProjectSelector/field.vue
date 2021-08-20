@@ -21,8 +21,8 @@ export default {
         return {
             inputValue: "",
             widgetValue: "",
-            groupMap: {},
-            currentSelectGroup: null,
+            prjectMap: {},
+            currentSelectProject: null,
         };
     },
     computed: {
@@ -35,26 +35,26 @@ export default {
             this.$refs.modal.open();
         },
         onSelected(record) {
-            this.currentSelectGroup = record;
-            this.widgetValue = `${record.groupId},${record.groupName}`;
-            this.inputValue = record.groupName;
+            this.currentSelectProject = record;
+            this.widgetValue = `${record.projectId},${record.projectName}`;
+            this.inputValue = record.projectName;
         },
         loadData() {
-            return Object.keys(this.groupMap) > 0
-                ? Promise.resolve(this.groupMap)
+            return Object.keys(this.prjectMap) > 0
+                ? Promise.resolve(this.prjectMap)
                 : Store.list({
                       pageIndex: 1,
                       pageSize: 9999,
                   }).then((res) => {
-                      this.groupMap =
+                      this.prjectMap =
                           (res &&
                               res.list &&
                               res.list.reduce((res, item) => {
-                                  res[item.groupId] = item;
+                                  res[item.projectId] = item;
                                   return res;
                               }, {})) ||
                           {};
-                      return this.groupMap;
+                      return this.prjectMap;
                   });
         },
     },
@@ -75,9 +75,9 @@ export default {
             if (!v) {
                 this.inputValue = "";
             } else {
-                this.inputValue = this.currentSelectGroup
-                    ? this.currentSelectGroup.groupName
-                    : this.model.groupName;
+                this.inputValue = this.currentSelectProject
+                    ? this.currentSelectProject.projectName
+                    : this.model.projectName;
             }
         },
     },

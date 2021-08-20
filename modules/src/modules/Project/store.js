@@ -2,8 +2,9 @@ const $http = $import("dag/common/http");
 const $tools = $import("dag/common/tools");
 
 const URLS = {
-	LIST: "/api/m/device/group/query",
-	SAVE: "/api/m/device/group/save",
+	LIST: "/api/m/project/info/query",
+	SAVE: "/api/m/project/info/save",
+	REMOVE: "/api/m/project/info/deleteById",
 	HISTORY: "/api/m/sys/edit/query",
 	HISTORY_EXPORT: "/api/m/sys/edit/listExport",
 };
@@ -19,6 +20,13 @@ export default {
 	save(model) {
 		return $http({
 			url: URLS.SAVE,
+			type: "POST",
+			data: model,
+		});
+	},
+	remove(model) {
+		return $http({
+			url: URLS.REMOVE,
 			type: "POST",
 			data: model,
 		});

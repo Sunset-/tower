@@ -1,6 +1,6 @@
 <template>
     <xui-modal ref="modal" width="900" title="项目编辑">
-        <xui-form ref="form" class="project-detail-form" :options="formOptions" @submit="save" @cancel="cancel">
+        <xui-form ref="form" :view="isView" class="project-detail-form" :options="formOptions" @submit="save" @cancel="cancel">
         </xui-form>
     </xui-modal>
 </template>
@@ -11,28 +11,21 @@ const $tip = $import("dag/common/tip");
 export default {
     data() {
         return {
+            isView : false,
             formOptions: {
                 cols: 2,
                 fields: [
                     {
                         label: "项目名称",
-                        name: "groupName",
+                        name: "projectName",
                         widget: "input",
                         placeholder: "请输入项目名称",
                         disabled(model) {
-                            return !!model.groupId;
+                            return !!model.projectId;
                         },
                         validate: {
                             required: true,
                             maxlength: 64,
-                        },
-                    },
-                    {
-                        label: "项目地址",
-                        name: "deviceAddress",
-                        widget: "input",
-                        validate: {
-                            required: true,
                         },
                     },
                     {
@@ -58,7 +51,7 @@ export default {
                     },
                     {
                         label: "建设单位",
-                        name: "ownerUnit",
+                        name: "buildParty",
                         newline: true,
                         widget: "input",
                         placeholder: "请输入所属单位",
@@ -69,16 +62,16 @@ export default {
                     ,
                     {
                         label: "建设单位联系人",
-                        name: "contacts",
+                        name: "contactPerson",
                         widget: "input",
-                        placeholder: "请输入项目联系人",
+                        placeholder: "请输入联系人",
                         validate: {
                             maxlength: 32,
                         },
                     },
                     {
                         label: "建设单位联系人电话",
-                        name: "contactWay",
+                        name: "contactPhone",
                         widget: "input",
                         placeholder: "请输入联系方式",
                         validate: {
@@ -87,7 +80,7 @@ export default {
                     },
                     {
                         label: "产权单位",
-                        name: "ownerUnit",
+                        name: "propertyRightParty",
                         newline: true,
                         widget: "input",
                         placeholder: "请输入所属单位",
@@ -98,16 +91,16 @@ export default {
                     ,
                     {
                         label: "产权单位联系人",
-                        name: "contacts",
+                        name: "propertyRightPerson",
                         widget: "input",
-                        placeholder: "请输入项目联系人",
+                        placeholder: "请输入联系人",
                         validate: {
                             maxlength: 32,
                         },
                     },
                     {
                         label: "产权单位联系人电话",
-                        name: "contactWay",
+                        name: "propertyRightPhone",
                         widget: "input",
                         placeholder: "请输入联系方式",
                         validate: {
@@ -116,7 +109,7 @@ export default {
                     },
                     {
                         label: "安全站",
-                        name: "ownerUnit",
+                        name: "safetyStation",
                         newline: true,
                         widget: "input",
                         placeholder: "请输入所属单位",
@@ -127,16 +120,16 @@ export default {
                     ,
                     {
                         label: "安全站联系人",
-                        name: "contacts",
+                        name: "safetyStationPerson",
                         widget: "input",
-                        placeholder: "请输入项目联系人",
+                        placeholder: "请输入联系人",
                         validate: {
                             maxlength: 32,
                         },
                     },
                     {
                         label: "安全站联系人电话",
-                        name: "contactWay",
+                        name: "safetyStationPhone",
                         widget: "input",
                         placeholder: "请输入联系方式",
                         validate: {
@@ -145,7 +138,7 @@ export default {
                     },
                     {
                         label: "施工单位",
-                        name: "ownerUnit",
+                        name: "constructParty",
                         newline: true,
                         widget: "input",
                         placeholder: "请输入所属单位",
@@ -156,16 +149,16 @@ export default {
                     ,
                     {
                         label: "施工单位联系人",
-                        name: "contacts",
+                        name: "constructPerson",
                         widget: "input",
-                        placeholder: "请输入项目联系人",
+                        placeholder: "请输入联系人",
                         validate: {
                             maxlength: 32,
                         },
                     },
                     {
                         label: "施工单位联系人电话",
-                        name: "contactWay",
+                        name: "constructPhone",
                         widget: "input",
                         placeholder: "请输入联系方式",
                         validate: {
@@ -174,7 +167,7 @@ export default {
                     },
                     {
                         label: "监理单位",
-                        name: "ownerUnit",
+                        name: "surveyParty",
                         newline: true,
                         widget: "input",
                         placeholder: "请输入所属单位",
@@ -185,16 +178,16 @@ export default {
                     ,
                     {
                         label: "监理单位联系人",
-                        name: "contacts",
+                        name: "surveyPerson",
                         widget: "input",
-                        placeholder: "请输入项目联系人",
+                        placeholder: "请输入联系人",
                         validate: {
                             maxlength: 32,
                         },
                     },
                     {
                         label: "监理单位联系人电话",
-                        name: "contactWay",
+                        name: "surveyPhone",
                         widget: "input",
                         placeholder: "请输入联系方式",
                         validate: {
@@ -203,21 +196,34 @@ export default {
                     },
                     {
                         label: "项目备注",
-                        name: "contactWay",
+                        name: "remark",
                         widget: "textarea",
-                        monopolize : true,
+                        monopolize: true,
                         placeholder: "请输入项目备注",
                         validate: {
                             maxlength: 150,
                         },
                     },
                 ],
+                format(model) {
+                    if (model.lonlat) {
+                        var lonlat = model.lonlat.split(",");
+                        model.lng = lonlat[0];
+                        model.lat = lonlat[1];
+                    }
+                },
+                cast(model) {
+                    if (model.lng && model.lat) {
+                        model.lonlat = `${model.lng},${model.lat}`;
+                    }
+                },
             },
         };
     },
     methods: {
-        open(model) {
+        open(model,view) {
             this.$refs.modal.open();
+            this.isView = !!view;
             this.$refs.form.reset(model);
         },
         save(model) {
@@ -235,8 +241,8 @@ export default {
 </script>
 <style lang="less">
 .project-detail-form {
-    &>.form-row{
-        height:400px;
+    & > .form-row {
+        height: 400px;
         overflow-y: scroll;
     }
     &.xui-form.xui-form-style .xui-form-field .xui-field-label {

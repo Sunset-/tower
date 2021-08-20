@@ -20,7 +20,7 @@ export default {
                 filterEmpty: true,
                 fields: [
                     {
-                        name: "groupName",
+                        name: "projectName",
                         widget: "input",
                         placeholder: "请输入名称",
                         manner: "search",
@@ -41,24 +41,27 @@ export default {
                     },
                     {
                         title: "项目名称",
-                        name: "groupName",
+                        name: "projectName",
                         align: "center",
                     },
                     {
-                        title: "所属单位",
-                        name: "ownerUnit",
+                        title: "项目地址",
+                        name: "address",
+                        align: "center",
                     },
                     {
                         title: "设备数",
                         name: "deviceCount",
                     },
                     {
-                        title: "联系人",
-                        name: "contacts",
+                        title: "产权单位",
+                        name: "propertyRightParty",
+                        align: "center",
                     },
                     {
-                        title: "联系方式",
-                        name: "contactWay",
+                        title: "产权单位联系人",
+                        name: "propertyRightPerson",
+                        align: "center",
                     },
                     {
                         title: "操作",
