@@ -7,6 +7,7 @@ const URLS = {
 	REMOVE: "/api/m/project/info/deleteById",
 	HISTORY: "/api/m/sys/edit/query",
 	HISTORY_EXPORT: "/api/m/sys/edit/listExport",
+	EQ_LIST : "/api/m/device/params/list"
 };
 
 export default {
@@ -60,4 +61,11 @@ export default {
 			$tools.downloadFile("编辑记录.xlsx", res);
 		});
 	},
+	eqList(query){
+		return $http({
+			url: URLS.EQ_LIST,
+			type: "POST",
+			data: query,
+		});
+	}
 };

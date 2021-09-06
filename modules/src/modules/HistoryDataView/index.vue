@@ -190,37 +190,6 @@ export default {
                         ],
                     },
                     {
-                        label: "通道编号",
-                        name: "channelNum",
-                        widget: "select",
-                        defaultFirst: true,
-                        changeFilter: true,
-                        placeholder: "请选择通道",
-                        style: "width:120px;",
-                        clearable: false,
-                        premise: () => {
-                            return (
-                                this.currentDevice &&
-                                this.currentDevice.deviceType == "1"
-                            );
-                        },
-                        data() {
-                            var items = [
-                                {
-                                    text: "全部",
-                                    value: "ALL",
-                                },
-                            ];
-                            for (var i = 1; i <= 16; i++) {
-                                items.push({
-                                    text: `通道${i}`,
-                                    value: `${i}`,
-                                });
-                            }
-                            return items;
-                        },
-                    },
-                    {
                         name: "alarmcode",
                         widget: "radio",
                         changeFilter: true,
@@ -294,61 +263,64 @@ export default {
                 columns: [
                     {
                         title: "变幅",
-                        name: "deviceNo",
+                        name: "amplitude",
                         align: "center",
+                        style: "width:70px;",
                     },
                     {
                         title: "高度",
-                        name: "deviceNo",
+                        name: "height",
                         align: "center",
+                        style: "width:70px;",
                     },
                     {
                         title: "吊重",
-                        name: "deviceNo",
+                        name: "suspendWeight",
                         align: "center",
+                        style: "width:70px;",
                     },
                     {
                         title: "回转",
-                        name: "deviceNo",
+                        name: "gyration",
                         align: "center",
+                        style: "width:70px;",
                     },
                     {
                         title: "风速",
-                        name: "deviceNo",
+                        name: "windSpeed",
                         align: "center",
+                        style: "width:70px;",
                     },
                     {
                         title: "倾角",
-                        name: "deviceNo",
+                        name: "dipAngle",
                         align: "center",
+                        style: "width:70px;",
                     },
                     {
                         title: "力矩百分比",
-                        name: "deviceNo",
+                        name: "torquePercent",
                         align: "center",
                     },
                     {
                         title: "吊重百分比",
-                        name: "deviceNo",
+                        name: "suspendWeightPercent",
                         align: "center",
                     },
                     {
                         title: "倾斜百分比",
-                        name: "deviceNo",
+                        name: "dipAnglePercent",
                         align: "center",
                     },
                     {
                         title: "风速百分比",
-                        name: "deviceNo",
+                        name: "windSpeedPercent",
                         align: "center",
                     },
                     {
                         title: "报警状态",
                         name: "alarmcode",
                         format(v, record) {
-                            if (!record.$showData.$otherSwitch) {
-                                return "--";
-                            }
                             if (v == 0) {
                                 return v;
                             } else {
@@ -373,7 +345,7 @@ export default {
                     },
                     {
                         title: "制动状态",
-                        name: "deviceNo",
+                        name: "brakingCode",
                         align: "center",
                     },
                 ],
@@ -409,7 +381,7 @@ export default {
         },
         title() {
             if (this.currentDevice.deviceName) {
-                return `${this.currentDevice.groupName} > ${this.currentDevice.deviceName}`;
+                return `${this.currentDevice.projectName} > ${this.currentDevice.deviceName}`;
             }
             return "-";
         },

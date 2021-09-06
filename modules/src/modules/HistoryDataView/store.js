@@ -4,7 +4,6 @@ const $tip = $import("dag/common/tip");
 
 const URLS = {
     LIST: "/api/m/data/record/query",
-    LIST_CGQ: "/api/m/data/record_ct/query",
     HISTORY_EXPORT: "/api/m/data/record/listExport",
     HISTORY_EXPORT_CGQ: "/api/m/data/record_ct/listExport",
     GET_WORKING_PARAMS: "/api/m/device/params_current/list",
@@ -16,49 +15,6 @@ export default {
             url: URLS.LIST,
             type: "POST",
             data: filter,
-        }).then((res) => {
-            res.list &&
-                res.list.forEach((item) => {
-                    if (item.showData) {
-                        item.$showData = item.showData
-                            .split(",")
-                            .reduce((res, kv) => {
-                                var kvs = kv.split(":");
-                                if (kvs.length == 2) {
-                                    res[kvs[0]] = kvs[1];
-                                }
-                                return res;
-                            }, {});
-                    } else {
-                        item.$showData = {};
-                    }
-                });
-            return res;
-        });
-    },
-    listCgq(filter) {
-        return $http({
-            url: URLS.LIST_CGQ,
-            type: "POST",
-            data: filter,
-        }).then((res) => {
-            res.list &&
-                res.list.forEach((item) => {
-                    if (item.showData) {
-                        item.$showData = item.showData
-                            .split(",")
-                            .reduce((res, kv) => {
-                                var kvs = kv.split(":");
-                                if (kvs.length == 2) {
-                                    res[kvs[0]] = kvs[1];
-                                }
-                                return res;
-                            }, {});
-                    } else {
-                        item.$showData = {};
-                    }
-                });
-            return res;
         });
     },
     exportHistory(query, deviceName) {

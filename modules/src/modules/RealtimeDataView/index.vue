@@ -23,7 +23,7 @@
             <div style="position:absolute;left:0px;right:0px;bottom:0px;top:45px;padding:10px;overflow:scroll;"
                 @click="tableClick">
                 <xui-datapage ref="datapage" :options="dataPageOptions" @output="getTable">
-                    <xui-table v-show="viewMode=='TABLE'" :style="currentGroup.deviceType=='2'?'':'min-width:2000px;'"
+                    <xui-table v-show="viewMode=='TABLE'" :style="currentGroup.deviceType=='2'?'':'min-width:1200px;'"
                         ref="table" :options="tableOptions">
                     </xui-table>
                     <!-- <div v-show="viewMode=='CARD'" class="device-data-cards">
@@ -228,15 +228,11 @@ export default {
                 },
                 datasource: (filter) => {
                     this.loading = false;
-                    filter.groupId = this.currentGroupId;
+                    filter.projectId = this.currentProjectId;
                     if (filter.deviceStatus == "ALL") {
                         delete filter.deviceStatus;
                     }
-                    return Store[
-                        this.currentGroup && this.currentGroup.deviceType == 2
-                            ? "listCgq"
-                            : "list"
-                    ](filter);
+                    return Store.list(filter);
                 },
             },
             tableOptions: {
@@ -245,12 +241,13 @@ export default {
                         title: "设备SN",
                         name: "deviceSN",
                         align: "center",
+                        style: "width:120px;",
                     },
                     {
                         title: "状态",
                         name: "deviceStatus",
-                        align: "left",
-                        style: "width:170px;",
+                        align: "center",
+                        style: "width:80px;",
                         format(v, record) {
                             var status = record.deviceStatus;
                             var electricity = record.powerpercent;
@@ -275,87 +272,95 @@ export default {
                     },
                     {
                         title: "变幅",
-                        name: "deviceNo",
+                        name: "amplitude",
                         align: "center",
+                        style: "width:50px;",
                     },
                     {
                         title: "高度",
-                        name: "deviceNo",
+                        name: "height",
                         align: "center",
+                        style: "width:50px;",
                     },
                     {
                         title: "吊重",
-                        name: "deviceNo",
+                        name: "suspendWeight",
                         align: "center",
+                        style: "width:50px;",
                     },
                     {
                         title: "回转",
-                        name: "deviceNo",
+                        name: "gyration",
                         align: "center",
+                        style: "width:50px;",
                     },
                     {
                         title: "风速",
-                        name: "deviceNo",
+                        name: "windSpeed",
                         align: "center",
+                        style: "width:50px;",
                     },
                     {
                         title: "倾角",
-                        name: "deviceNo",
+                        name: "dipAngle",
                         align: "center",
+                        style: "width:50px;",
                     },
                     {
                         title: "力矩百分比",
-                        name: "deviceNo",
+                        name: "torquePercent",
                         align: "center",
+                        style: "width:90px;",
                     },
                     {
                         title: "吊重百分比",
-                        name: "deviceNo",
+                        name: "suspendWeightPercent",
                         align: "center",
+                        style: "width:90px;",
                     },
                     {
                         title: "倾斜百分比",
-                        name: "deviceNo",
+                        name: "dipAnglePercent",
                         align: "center",
+                        style: "width:90px;",
                     },
                     {
                         title: "风速百分比",
-                        name: "deviceNo",
+                        name: "windSpeedPercent",
                         align: "center",
+                        style: "width:90px;",
                     },
-                    {
-                        title: "报警状态",
-                        name: "alarmcode",
-                        format(v, record) {
-                            if (!record.$showData.$otherSwitch) {
-                                return "--";
-                            }
-                            if (v == 0) {
-                                return v;
-                            } else {
-                                var alarm = Object.keys(record.$showData)
-                                    .filter((k) => k.indexOf("alarmcode") == 0)
-                                    .reduce((res, k) => {
-                                        res.push(
-                                            k.replace("alarmcode", "") +
-                                                ":" +
-                                                record.$showData[k]
-                                        );
-                                        return res;
-                                    }, [])
-                                    .join(";");
-                                return `<div class="device-alarm-num"
-                                 data-alarm="${alarm}"
-                                  data-sn="${record.deviceSN}"
-                                   data-name="${record.deviceName}"
-                                    data-type="${record.deviceType}" style="color:#4487F1;cursor:pointer;">${v}</div>`;
-                            }
-                        },
-                    },
+                    // {
+                    //     title: "报警状态",
+                    //     name: "alarmcode",
+                    //     format(v, record) {
+                    //         if (v == 0) {
+                    //             return v;
+                    //         } else {
+                    //             var alarm = Object.keys(record.$showData)
+                    //                 .filter((k) => k.indexOf("alarmcode") == 0)
+                    //                 .reduce((res, k) => {
+                    //                     res.push(
+                    //                         k.replace("alarmcode", "") +
+                    //                             ":" +
+                    //                             record.$showData[k]
+                    //                     );
+                    //                     return res;
+                    //                 }, [])
+                    //                 .join(";");
+                    //             return `<div class="device-alarm-num"
+                    //              data-alarm="${alarm}"
+                    //               data-sn="${record.deviceSN}"
+                    //                data-name="${record.deviceName}"
+                    //                 data-type="${record.deviceType}" style="color:#4487F1;cursor:pointer;">${v}</div>`;
+                    //         }
+                    //     },
+                    // },
                     {
                         title: "制动状态",
-                        name: "deviceNo",
+                        name: "brakingCode",
                         align: "center",
+                        style: "width:90px;",
                     },
                 ],
                 lazy: true,
@@ -373,7 +378,7 @@ export default {
                 },
             },
             totalNum: 0,
-            currentGroupId: "",
+            currentProjectId: "",
             currentGroup: {},
             list: [],
             alarmDevice: {
@@ -424,7 +429,7 @@ export default {
             n.deviceType = n.deviceType || "1";
 
             this.currentGroup = n;
-            this.currentGroupId = n.id;
+            this.currentProjectId = n.id;
             this.$refs.filter.search();
         },
         edit(model) {
@@ -503,7 +508,7 @@ export default {
             this.refreshTimer = null;
         },
         showAnimate(){
-            this.$refs.animate.open();
+            this.$refs.animate.open(this.currentProjectId);
         }
     },
     mounted() {

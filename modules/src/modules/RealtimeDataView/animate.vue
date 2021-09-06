@@ -8,6 +8,7 @@
 </template>
 <script>
 import circle from "./circle.vue";
+import Store from "./store";
 
 export default {
     components: {
@@ -84,8 +85,34 @@ export default {
         },
     },
     methods: {
-        open() {
-            this.$refs.modal.open();
+        open(projectId) {
+            Promise.all([
+                Store.eqList({
+                    projectId,
+                }),
+                Store.list({
+                    projectId,
+                    pageIndex: 1,
+                    pageSize: 9999,
+                }),
+            ]).then(([eqs,datas]) => {
+                var eqMap = {};
+                eqs.forEach((item) => {
+                    eqMap[item.deviceSN] = item;
+                    item.x = item.xLine;
+                    item.y = item.yLine;
+                    item.l = item.armLength;
+                    item.t = item.rearBridgeLong;
+                });
+                datas.list.forEach(item=>{
+                    if(eqMap[item.deviceSN]){
+                        eqMap[item.deviceSN].f = item.amplitude;
+                        eqMap[item.deviceSN].r = item.dipAngle;
+                    }
+                })
+                this.items = eqs;
+                this.$refs.modal.open();
+            });
         },
     },
 };
