@@ -9,7 +9,7 @@
 		"module": "dag/modules/Frameset",
 		"meta": {},
 		"path": "/",
-		"redirect": "EquipmentGroup"
+		"redirect": "Home"
 	},
 	"menu": [
 		{

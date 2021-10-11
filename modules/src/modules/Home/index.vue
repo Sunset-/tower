@@ -530,26 +530,26 @@ export default {
             Store.summary().then((res) => {
                 Object.assign(this.summary, res || {});
             });
-            this.refreshChart(0);
-            this.refreshChart(1);
-            this.refreshChart(2);
-            this.refreshChart(3);
+            // this.refreshChart(0);
+            // this.refreshChart(1);
+            // this.refreshChart(2);
+            // this.refreshChart(3);
         },
-        refreshChart(index) {
-            Store.statistics(this.chartFilters[index]).then((res) => {
-                res.reverse();
-                var chartOptions = this.chartOptions[index];
-                chartOptions.setOption.series[0].data = res.map(
-                    (item) => item.statisticValue
-                );
-                chartOptions.setOption.xAxis.data = res.map(
-                    (item) => item.statisticDate
-                );
-                this.$nextTick(() => {
-                    this.$refs[`chart${index}`].refresh();
-                });
-            });
-        },
+        // refreshChart(index) {
+        //     Store.statistics(this.chartFilters[index]).then((res) => {
+        //         res.reverse();
+        //         var chartOptions = this.chartOptions[index];
+        //         chartOptions.setOption.series[0].data = res.map(
+        //             (item) => item.statisticValue
+        //         );
+        //         chartOptions.setOption.xAxis.data = res.map(
+        //             (item) => item.statisticDate
+        //         );
+        //         this.$nextTick(() => {
+        //             this.$refs[`chart${index}`].refresh();
+        //         });
+        //     });
+        // },
         search(filter) {
             this.$refs.table.search(filter);
             this.$refs.table2.search(filter);

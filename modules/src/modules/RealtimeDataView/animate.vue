@@ -1,8 +1,31 @@
 <template>
-    <xui-modal ref="modal" title="设备动画查看" width="1240">
+    <xui-modal
+        ref="modal"
+        class="device-animate-modal"
+        title="设备动画查看"
+        width="1240"
+    >
         <div class="device-animate-container">
-            <device-circle v-for="(item,index) in items" :key="index" :basePoint="basePoint" :data="item">
+            <device-circle
+                v-for="(item, index) in items"
+                :key="index"
+                :basePoint="basePoint"
+                :data="item"
+                :selected="selected"
+                @selected="selectEq"
+            >
             </device-circle>
+        </div>
+        <div class="device-animate-info">
+            <div>
+                <div class="info-header">塔机详参</div>
+                <div class="info-item" v-for="info in infos" :key="info.name">
+                    <div class="info-item-label">{{ info.name }}</div>
+                    <div class="info-item-value">
+                        {{ info.value(selected) }}
+                    </div>
+                </div>
+            </div>
         </div>
     </xui-modal>
 </template>
@@ -16,6 +39,7 @@ export default {
     },
     data() {
         return {
+            selected: {},
             items: [
                 {
                     x: 50,
@@ -48,6 +72,80 @@ export default {
                     t: 10,
                     f: 40,
                     r: 50,
+                },
+            ],
+            infos: [
+                {
+                    name: "塔机名称",
+                    value(eq) {
+                        return eq.deviceName;
+                    },
+                },
+                {
+                    name: "设备编号",
+                    value(eq) {
+                        return eq.deviceNo;
+                    },
+                },
+                {
+                    name: "记录时间",
+                    value(eq) {
+                        return Sunset.Dates.format(eq.addTime);
+                    },
+                },
+                {
+                    name: "在线状态",
+                    value(eq) {
+                        return eq.deviceName;
+                    },
+                },
+                {
+                    name: "塔机类型",
+                    value(eq) {
+                        return eq.$realData && eq.$realData.deviceType;
+                    },
+                },
+                {
+                    name: "ByPass",
+                    value(eq) {
+                        return eq.deviceName;
+                    },
+                },
+                {
+                    name: "回转角度(°)",
+                    value(eq) {
+                        return eq.$realData && eq.$realData.gyration;
+                    },
+                },
+                {
+                    name: "幅度",
+                    value(eq) {
+                        return eq.$realData && eq.$realData.amplitude;
+                    },
+                },
+                {
+                    name: "吊钩高度(m)",
+                    value(eq) {
+                        return eq.$realData && eq.$realData.height;
+                    },
+                },
+                {
+                    name: "起重臂(m)",
+                    value(eq) {
+                        return eq.$realData && eq.$realData.gyration;
+                    },
+                },
+                {
+                    name: "平衡臂(m)",
+                    value(eq) {
+                        return eq.$realData && eq.$realData.gyration;
+                    },
+                },
+                {
+                    name: "报警信息",
+                    value(eq) {
+                        return eq.$realData && eq.$realData.alarmcode;
+                    },
                 },
             ],
         };
@@ -95,7 +193,7 @@ export default {
                     pageIndex: 1,
                     pageSize: 9999,
                 }),
-            ]).then(([eqs,datas]) => {
+            ]).then(([eqs, datas]) => {
                 var eqMap = {};
                 eqs.forEach((item) => {
                     eqMap[item.deviceSN] = item;
@@ -104,24 +202,88 @@ export default {
                     item.l = item.armLength;
                     item.t = item.rearBridgeLong;
                 });
-                datas.list.forEach(item=>{
-                    if(eqMap[item.deviceSN]){
+                datas.list.forEach((item) => {
+                    if (eqMap[item.deviceSN]) {
                         eqMap[item.deviceSN].f = item.amplitude;
                         eqMap[item.deviceSN].r = item.dipAngle;
+                        eqMap[item.deviceSN].$realData = item;
                     }
-                })
+                });
                 this.items = eqs;
                 this.$refs.modal.open();
+
+                eqs[1].x += 130;
+                eqs[1].y += 130;
+
+                eqs[2].x += 130;
+                eqs[2].y += 0;
             });
+        },
+        selectEq(eq) {
+            this.selected = eq;
         },
     },
 };
 </script>
 <style lang="less">
+.device-animate-modal {
+    .xui-modal-content {
+        font-size: 0px;
+        position: relative;
+    }
+}
 .device-animate-container {
     height: 700px;
+    width: calc(100% - 440px);
     position: relative;
     background: #141e27;
     border: 20px solid #141e27;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+}
+.device-animate-info {
+    position: absolute;
+    width: 400px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    font-size: 14px;
+    padding: 5px;
+    box-sizing: border-box;
+    background: #141e27;
+    .info-header {
+        text-align: center;
+        padding: 10px 0px;
+        background: #1890ff;
+        color: yellow;
+        border-radius: 4px 4px 0px 0px;
+    }
+    .info-item {
+        line-height: 35px;
+        background: #1c2937;
+        color: #fff;
+        box-sizing: border-box;
+
+        padding: 0px 10px;
+        .info-item-label {
+            display: inline-block;
+            vertical-align: middle;
+            width: 180px;
+        }
+        .info-item-value {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        &:nth-child(odd) {
+            background: #1b3548;
+        }
+        &:not(:last-child) {
+            border-bottom: 1px solid #656565;
+        }
+        &:last-child {
+            border-radius: 0px 0px 4px 4px;
+        }
+    }
 }
 </style>

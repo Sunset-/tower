@@ -3,7 +3,7 @@ const $tools = $import("dag/common/tools");
 const $tip = $import("dag/common/tip");
 
 const URLS = {
-    LIST: "/api/m/data/record/query",
+    LIST: "/api/m/data/work_record/query",
     LIST_CGQ: "/api/m/data/record_ct/query",
     HISTORY_EXPORT: "/api/m/data/record/listExport",
     HISTORY_EXPORT_CGQ: "/api/m/data/record_ct/listExport",
