@@ -2,18 +2,30 @@
     <div class="home-data-card">
         <div class="card-title">
             <span v-if="closeable">项目信息</span>
-            <i v-if="closeable" class="xui-icon xui-icon-close card-closer" @click="$emit('close')"></i>
+            <i
+                v-if="closeable"
+                class="xui-icon xui-icon-close card-closer"
+                @click="$emit('close')"
+            ></i>
         </div>
         <div class="card-content">
-            <div v-for="l in labels" :key="l.label" class="card-channel-data" :title="l.label"
-                :style="l.line?'width:100%;':''">
+            <div
+                v-for="l in labels"
+                :key="l.label"
+                class="card-channel-data"
+                :title="l.label"
+                :style="l.line ? 'width:100%;' : ''"
+            >
                 <div>
-                    <div class="channel-label">
-                        {{l.label}}：
-                    </div>
+                    <div class="channel-label">{{ l.label }}：</div>
                     <div class="channel-value">
-                        <span v-if="l.operate" class="channel-operate" @click="l.operate()">{{l.value}}</span>
-                        <span v-if="!l.operate">{{l.value}}</span>
+                        <span
+                            v-if="l.operate"
+                            class="channel-operate"
+                            @click="l.operate()"
+                            >{{ renderCell(l) }}</span
+                        >
+                        <span v-if="!l.operate">{{ renderCell(l) }}</span>
                     </div>
                 </div>
             </div>
@@ -36,33 +48,35 @@ export default {
             labels: [
                 {
                     label: "项目名称",
-                    name: "",
-                    value: "外事学院外事学院二期扩张项目",
+                    name: "projectName",
+                    value: "",
                 },
                 {
                     label: "项目地址",
-                    name: "",
+                    name: "address",
                 },
                 {
                     label: "开工时间",
-                    name: "",
+                    name: "startTime",
+                    date: true,
                 },
                 {
                     label: "完工时间",
-                    name: "",
+                    name: "endTime",
+                    date: true,
                 },
                 {
                     label: "产权单位",
-                    name: "",
+                    name: "propertyRightParty",
                 },
                 {
                     label: "建设单位",
-                    name: "",
+                    name: "buildParty",
                 },
                 {
                     label: "所属安全站",
                     line: true,
-                    name: "",
+                    name: "safetyStation",
                 },
                 {
                     label: "操作",
@@ -70,11 +84,31 @@ export default {
                     name: "",
                     value: "查看详情",
                     operate: () => {
-                        alert(1);
+                        this.$router.push({
+                            name: "RealtimeDataView",
+                            query: {
+                                id: this.data.projectId,
+                            },
+                        });
                     },
                 },
             ],
         };
+    },
+    methods: {
+        renderCell(l) {
+            if (l.operate) {
+                return l.value;
+            }
+            var v = Sunset.getAttribute(this.data, l.name);
+            if (v === void 0 || v === null) {
+                return "-";
+            }
+            if (l.date) {
+                return Sunset.Dates.format(v, "yyyy-MM-dd");
+            }
+            return v;
+        },
     },
 };
 </script>

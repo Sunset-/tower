@@ -1,30 +1,77 @@
 <template>
     <div class="MODULE-CONTAINER MODULE-Equipment">
         <div class="MODULE-LEFT-SIDE">
-            <xui-filter class="left_filter" ref="filter" :options="treeFilterOptions" @filter="searchTree"></xui-filter>
+            <xui-filter
+                class="left_filter"
+                ref="filter"
+                :options="treeFilterOptions"
+                @filter="searchTree"
+            ></xui-filter>
             <div class="left-tree-container">
-                <dag-tree ref="tree" :options="equipmentTree" @selected="onSelected"></dag-tree>
+                <dag-tree
+                    ref="tree"
+                    :options="equipmentTree"
+                    @selected="onSelected"
+                    @inited="treeInited"
+                ></dag-tree>
             </div>
         </div>
-        <div class="MODULE-MAJOR-CONTENT" v-show="page=='LIST'">
+        <div class="MODULE-MAJOR-CONTENT" v-show="page == 'LIST'">
             <!-- <xui-tabs v-model="viewMode" :options="tabOptions"></xui-tabs> -->
             <!-- 搜索条件 -->
-            <div class="PANEL-SEARCH" style="border-bottom:1px solid #dedede;justify-content: space-between;">
-                <xui-filter class="title_filter" ref="filter" :options="filterOptions" @filter="search"></xui-filter>
+            <div
+                class="PANEL-SEARCH"
+                style="
+                    border-bottom: 1px solid #dedede;
+                    justify-content: space-between;
+                "
+            >
+                <xui-filter
+                    class="title_filter"
+                    ref="filter"
+                    :options="filterOptions"
+                    @filter="search"
+                ></xui-filter>
                 <div>
-                    <div style="display:inline-block;padding-right:30px;">
+                    <div style="display: inline-block; padding-right: 30px">
                         <label>实时刷新</label>
                         <xui-switch v-model="autoRefresh"></xui-switch>
                     </div>
-                    <xui-button color="primary" style="" @click="refresh">刷新数据</xui-button>
-                    <xui-button color="success" style="" @click="showAnimate">动画查看</xui-button>
+                    <xui-button color="primary" style="" @click="refresh"
+                        >刷新数据</xui-button
+                    >
+                    <xui-button color="success" style="" @click="showAnimate"
+                        >动画查看</xui-button
+                    >
                 </div>
             </div>
-            <div style="position:absolute;left:0px;right:0px;bottom:0px;top:45px;padding:10px;overflow:scroll;"
-                @click="tableClick">
-                <xui-datapage ref="datapage" :options="dataPageOptions" @output="getTable">
-                    <xui-table v-show="viewMode=='TABLE'" :style="currentGroup.deviceType=='2'?'':'min-width:1200px;'"
-                        ref="table" :options="tableOptions">
+            <div
+                style="
+                    position: absolute;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    top: 45px;
+                    padding: 10px;
+                    overflow: scroll;
+                "
+                @click="tableClick"
+            >
+                <xui-datapage
+                    ref="datapage"
+                    :options="dataPageOptions"
+                    @output="getTable"
+                >
+                    <xui-table
+                        v-show="viewMode == 'TABLE'"
+                        :style="
+                            currentGroup.deviceType == '2'
+                                ? ''
+                                : 'min-width:1200px;'
+                        "
+                        ref="table"
+                        :options="tableOptions"
+                    >
                     </xui-table>
                     <!-- <div v-show="viewMode=='CARD'" class="device-data-cards">
                         <device-card v-for="item in list" :key="item.deviceSN" :data="item"></device-card>
@@ -33,11 +80,22 @@
             </div>
         </div>
         <xui-modal ref="alarmmodal" title="报警详情" width="500">
-            <div style="padding:15px;max-height:400px;overflow-y:auto;">
-                <div style="padding:10px;">设备SN：{{alarmDevice.deviceSN}}&nbsp;&nbsp;设备名称：{{alarmDevice.deviceName}}
+            <div style="padding: 15px; max-height: 400px; overflow-y: auto">
+                <div style="padding: 10px">
+                    设备SN：{{ alarmDevice.deviceSN }}&nbsp;&nbsp;设备名称：{{
+                        alarmDevice.deviceName
+                    }}
                 </div>
-                <div style="padding:10px;" v-for="c in alarmDevice.channels" :key="c.index">通道{{c.index}}：<span
-                        :class="{'color-primary':c.alarmText!='-'}">{{c.alarmText}}</span></div>
+                <div
+                    style="padding: 10px"
+                    v-for="c in alarmDevice.channels"
+                    :key="c.index"
+                >
+                    通道{{ c.index }}：<span
+                        :class="{ 'color-primary': c.alarmText != '-' }"
+                        >{{ c.alarmText }}</span
+                    >
+                </div>
             </div>
         </xui-modal>
         <device-animate ref="animate"></device-animate>
@@ -131,7 +189,7 @@ export default {
             loading: false,
             equipmentTree: {
                 treeType: "EQUIPMENT",
-                selectedRoot: true,
+                selectedRoot: !this.$route.query.id,
                 isParent(node) {
                     return node.type == "group";
                 },
@@ -507,9 +565,14 @@ export default {
             clearTimeout(this.refreshTimer);
             this.refreshTimer = null;
         },
-        showAnimate(){
+        showAnimate() {
             this.$refs.animate.open(this.currentProjectId);
-        }
+        },
+        treeInited() {
+            if (this.$route.query.id) {
+                this.$refs.tree.selectNode(this.$route.query.id);
+            }
+        },
     },
     mounted() {
         this.refreshTimer = setInterval(() => {

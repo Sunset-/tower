@@ -3,100 +3,122 @@
         <div class="MODULE-MAJOR-CONTENT Home-content">
             <div class="home-charts">
                 <div class="head-summary">
-                    <div class="summary-icon" style="background:#4C9CFF;">
-                        <img src="/images/home/summary_1.png" alt="">
+                    <div class="summary-icon" style="background: #4c9cff">
+                        <img src="/images/home/summary_1.png" alt="" />
                     </div>
                     <div class="summary-info">
                         <div class="summary-title">设备总数</div>
-                        <div class="summary-total" style="color:#4C9CFF;">1</div>
+                        <div class="summary-total" style="color: #4c9cff">
+                            {{ summary.deviceCount }}
+                        </div>
                         <div class="summary-detail">
                             <div>
                                 <label>塔机</label>
-                                <span>1</span>
+                                <span>{{ summary.towerCount }}</span>
                             </div>
                             <div>
                                 <label>升降机</label>
-                                <span>0</span>
+                                <span>{{ summary.lifterCount }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="head-summary">
                     <div class="summary-icon">
-                        <img src="/images/home/summary_2.png" alt="">
+                        <img src="/images/home/summary_2.png" alt="" />
                     </div>
                     <div class="summary-info">
                         <div class="summary-title">在线总数</div>
-                        <div class="summary-total" style="color:#4DD487;">1</div>
+                        <div class="summary-total" style="color: #4dd487">
+                            {{ summary.onlineDeviceCount }}
+                        </div>
                         <div class="summary-detail">
                             <div>
                                 <label>塔机</label>
-                                <span>1</span>
+                                <span>{{
+                                    summary.onlineTowerDeviceCount
+                                }}</span>
                             </div>
                             <div>
                                 <label>升降机</label>
-                                <span>0</span>
+                                <span>{{
+                                    summary.onlineLifterDeviceCount
+                                }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="head-summary">
                     <div class="summary-icon">
-                        <img src="/images/home/summary_3.png" alt="">
+                        <img src="/images/home/summary_3.png" alt="" />
                     </div>
                     <div class="summary-info">
                         <div class="summary-title">今日装载次数</div>
-                        <div class="summary-total" style="color:#FFBF00;">1</div>
+                        <div class="summary-total" style="color: #ffbf00">
+                            {{ summary.loadingCount }}
+                        </div>
                         <div class="summary-detail">
                             <div>
                                 <label>塔机</label>
-                                <span>1</span>
+                                <span>{{
+                                    summary.loadingTowerDeviceCount
+                                }}</span>
                             </div>
                             <div>
                                 <label>升降机</label>
-                                <span>0</span>
+                                <span>{{
+                                    summary.loadingLifterDeviceCount
+                                }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="head-summary">
                     <div class="summary-icon">
-                        <img src="/images/home/summary_4.png" alt="">
+                        <img src="/images/home/summary_4.png" alt="" />
                     </div>
                     <div class="summary-info">
                         <div class="summary-title">今日违规次数</div>
-                        <div class="summary-total" style="color:#EE5048;">1</div>
+                        <div class="summary-total" style="color: #ee5048">
+                            {{ summary.getOutLineCount }}
+                        </div>
                         <div class="summary-detail">
                             <div>
                                 <label>塔机</label>
-                                <span>1</span>
+                                <span>{{
+                                    summary.getOutLineCountTowerDeviceCount
+                                }}</span>
                             </div>
                             <div>
                                 <label>升降机</label>
-                                <span>0</span>
+                                <span>{{
+                                    summary.getOutLineCountLifterDeviceCount
+                                }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="home-major">
-                <xui-tabs v-model="viewMode" :options="tabOptions"></xui-tabs>
-                <xui-filter :options="filterOptions" @filter="search"
-                    style="display:block;background:#FFF;padding-left:10px;">
+                <xui-filter
+                    :options="filterOptions"
+                    @filter="search"
+                    style="display: block; background: #fff; padding-left: 10px"
+                >
                 </xui-filter>
-                <div class="home-major-content" v-show="viewMode=='MAP'">
+                <div class="home-major-content" v-show="viewMode == 'MAP'">
                     <iot-map ref="map" @inited="showMarkers()"></iot-map>
-                </div>
-                <div class="home-major-content" v-show="viewMode=='TABLE'" style="padding:10px;">
-                    <div class="table-title">实时在线设备</div>
-                    <xui-table ref="table" :options="tableOptions"></xui-table>
-                    <div class="table-title">实时报警设备</div>
-                    <xui-table ref="table2" style="width:800px;" :options="tableOptions2"></xui-table>
                 </div>
             </div>
         </div>
-        <device-card ref="infowindow" v-show="isShowInfoWindow" class="iot-map-infowindow" :closeable="true"
-            :data="currentDeviceData" @close="closeInfoWindow()"></device-card>
+        <device-card
+            ref="infowindow"
+            v-show="isShowInfoWindow"
+            class="iot-map-infowindow"
+            :closeable="true"
+            :data="currentDeviceData"
+            @close="closeInfoWindow()"
+        ></device-card>
     </div>
 </template>
 <script>
@@ -104,124 +126,6 @@ const $dictionary = $import("dag/common/dictionary");
 
 import Store from "./store";
 import DeviceCard from "./card";
-
-function chartTemplate(options) {
-    return {
-        style: "width:100%",
-        setOption: {
-            title: {
-                text: options.title,
-                textStyle: {
-                    color: "#666",
-                    fontSize: "16",
-                },
-            },
-            toolbox: {
-                show: true,
-                right: 90,
-                feature: {
-                    magicType: { type: ["line", "bar"] },
-                },
-            },
-            color: ["#03A0EE", "#FF8528"],
-            legend: {
-                data: ["数据", "告警"],
-                right: "5%",
-                top: 10,
-                textStyle: {
-                    color: "#000",
-                    fontSize: 14,
-                },
-            },
-            grid: {
-                left: "5%",
-                right: "10%",
-                bottom: "5%",
-                top: "20%",
-                containLabel: true,
-            },
-            tooltip: {
-                trigger: "axis",
-                backgroundColor: "#fff",
-                // formatter: "{a0}<br/>【{b0}】: {c0}",
-                borderWidth: 3,
-                padding: 10,
-                borderColor: "rgba(227,234,236,0.3)",
-                textStyle: {
-                    color: "#333",
-                },
-                axisPointer: {
-                    type: "line",
-                    lineStyle: {
-                        color: "#DEDEDE",
-                    },
-                },
-            },
-            xAxis: {
-                type: "category",
-                data: [],
-                boundaryGap: false,
-                axisTick: {
-                    //y轴刻度线
-                    show: false,
-                },
-                axisLabel: {
-                    textStyle: {
-                        color: "##999999",
-                        fontSize: "12",
-                    },
-                },
-                splitLine: {
-                    show: false,
-                },
-                axisLine: {
-                    show: true,
-                    lineStyle: {
-                        color: "#DEDEDE",
-                    },
-                },
-            },
-            yAxis: [
-                {
-                    type: "value",
-                    // name: "近期转出数据",
-                    min: 0,
-                    max: options.yAxisMax,
-                    axisLabel: {
-                        textStyle: {
-                            color: "#999999",
-                            fontSize: "12",
-                        },
-                    },
-                    axisLabel: options.yAxisLabel,
-                    axisTick: {
-                        //y轴刻度线
-                        show: false,
-                    },
-                    axisLine: {
-                        show: false,
-                    },
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: "#DEDEDE",
-                            type: "dashed",
-                        },
-                    },
-                },
-            ],
-            series: [
-                {
-                    name: options.title,
-                    data: [0, 0, 0, 0, 0, 0, 0],
-                    type: "line",
-                    smooth: 0,
-                    symbolSize: 6,
-                },
-            ],
-        },
-    };
-}
 
 export default {
     components: {
@@ -287,242 +191,21 @@ export default {
                     label: "查找",
                 },
             },
-            chartOptions: [
-                chartTemplate({
-                    title: "在线率",
-                    yAxisMax: 1,
-                    yAxisLabel: {
-                        formatter: function (value, index) {
-                            return (+value * 100).toFixed(0) + "%";
-                        },
-                    },
-                }),
-                chartTemplate({
-                    title: "在线量",
-                    yAxisLabel: {
-                        formatter: function (value, index) {
-                            return value;
-                        },
-                    },
-                }),
-                chartTemplate({
-                    title: "报警率",
-                    yAxisMax: 1,
-                    yAxisLabel: {
-                        formatter: function (value, index) {
-                            return (+value * 100).toFixed(0) + "%";
-                        },
-                    },
-                }),
-                chartTemplate({
-                    title: "报警量",
-                    yAxisLabel: {
-                        formatter: function (value, index) {
-                            return value;
-                        },
-                    },
-                }),
-            ],
-            tableOptions: {
-                columns: [
-                    {
-                        title: "项目",
-                        name: "groupName",
-                        align: "center",
-                    },
-                    {
-                        title: "设备名称",
-                        name: "deviceName",
-                        align: "center",
-                    },
-                    {
-                        title: "通道1",
-                        name: "$showData.value1",
-                        format: (v, record) => {
-                            return this.renderCell(1, record);
-                        },
-                    },
-                    {
-                        title: "通道2",
-                        name: "$showData.value2",
-                        format: (v, record) => {
-                            return this.renderCell(2, record);
-                        },
-                    },
-                    {
-                        title: "通道3",
-                        name: "$showData.value3",
-                        format: (v, record) => {
-                            return this.renderCell(3, record);
-                        },
-                    },
-                    {
-                        title: "通道4",
-                        name: "$showData.value4",
-                        format: (v, record) => {
-                            return this.renderCell(4, record);
-                        },
-                    },
-                    {
-                        title: "通道5",
-                        name: "$showData.value5",
-                        format: (v, record) => {
-                            return this.renderCell(5, record);
-                        },
-                    },
-                    {
-                        title: "通道6",
-                        name: "$showData.value6",
-                        format: (v, record) => {
-                            return this.renderCell(6, record);
-                        },
-                    },
-                    {
-                        title: "通道7",
-                        name: "$showData.value7",
-                        format: (v, record) => {
-                            return this.renderCell(7, record);
-                        },
-                    },
-                    {
-                        title: "通道8",
-                        name: "$showData.value8",
-                        format: (v, record) => {
-                            return this.renderCell(8, record);
-                        },
-                    },
-                    {
-                        title: "通道9",
-                        name: "$showData.value9",
-                        format: (v, record) => {
-                            return this.renderCell(9, record);
-                        },
-                    },
-                    {
-                        title: "通道10",
-                        name: "$showData.value10",
-                        format: (v, record) => {
-                            return this.renderCell(10, record);
-                        },
-                    },
-                    {
-                        title: "通道11",
-                        name: "$showData.value11",
-                        format: (v, record) => {
-                            return this.renderCell(11, record);
-                        },
-                    },
-                    {
-                        title: "通道12",
-                        name: "$showData.value12",
-                        format: (v, record) => {
-                            return this.renderCell(12, record);
-                        },
-                    },
-                    {
-                        title: "通道13",
-                        name: "$showData.value13",
-                        format: (v, record) => {
-                            return this.renderCell(13, record);
-                        },
-                    },
-                    {
-                        title: "通道14",
-                        name: "$showData.value14",
-                        format: (v, record) => {
-                            return this.renderCell(14, record);
-                        },
-                    },
-                    {
-                        title: "通道15",
-                        name: "$showData.value15",
-                        format: (v, record) => {
-                            return this.renderCell(15, record);
-                        },
-                    },
-                    {
-                        title: "输出通道1",
-                        name: "outCh1",
-                    },
-                    {
-                        title: "输出通道2",
-                        name: "outCh2",
-                    },
-                ],
-                lazy: true,
-                pageNumberStart: 1,
-                pageSize: 10,
-                localPageSize: 10,
-                format: {
-                    list: "list",
-                    count: "total",
-                    currentPage: "pageIndex",
-                    pageSize: "pageSize",
-                },
-                datasource: (filter) => {
-                    return Store.list(filter).then((res) => {
-                        this.currentRecords = res.list;
-                        this.showMarkers();
-                        return res;
-                    });
-                },
-            },
             currentRecords: [],
-            tableOptions2: {
-                columns: [
-                    {
-                        title: "项目",
-                        name: "groupName",
-                        align: "center",
-                    },
-                    {
-                        title: "设备名称",
-                        name: "deviceName",
-                        align: "center",
-                    },
-                    {
-                        title: "报警详情",
-                        name: "alarmcode",
-                    },
-                ],
-                lazy: true,
-                pageNumberStart: 1,
-                pageSize: 50,
-                localPageSize: 50,
-                format: {
-                    list: "list",
-                    count: "total",
-                    currentPage: "pageIndex",
-                    pageSize: "pageSize",
-                },
-                datasource: (filter) => {
-                    return Store.alarm(filter);
-                },
-            },
             summary: {
-                alarmDeviceCount: 0,
                 deviceCount: 0,
-                offlineDeviceCount: 0,
+                getOutLineCount: 0,
+                getOutLineCountLifterDeviceCount: 0,
+                getOutLineCountTowerDeviceCount: 0,
+                lifterCount: 0,
+                loadingCount: 0,
+                loadingLifterDeviceCount: 0,
+                loadingTowerDeviceCount: 0,
                 onlineDeviceCount: 0,
+                onlineLifterDeviceCount: 0,
+                onlineTowerDeviceCount: 0,
+                towerCount: 0,
             },
-            chartFilters: [
-                {
-                    statisticType: 1,
-                    dayCount: "7",
-                },
-                {
-                    statisticType: 2,
-                    dayCount: "7",
-                },
-                {
-                    statisticType: 3,
-                    dayCount: "7",
-                },
-                {
-                    statisticType: 4,
-                    dayCount: "7",
-                },
-            ],
         };
     },
     methods: {
@@ -530,42 +213,20 @@ export default {
             Store.summary().then((res) => {
                 Object.assign(this.summary, res || {});
             });
-            // this.refreshChart(0);
-            // this.refreshChart(1);
-            // this.refreshChart(2);
-            // this.refreshChart(3);
         },
-        // refreshChart(index) {
-        //     Store.statistics(this.chartFilters[index]).then((res) => {
-        //         res.reverse();
-        //         var chartOptions = this.chartOptions[index];
-        //         chartOptions.setOption.series[0].data = res.map(
-        //             (item) => item.statisticValue
-        //         );
-        //         chartOptions.setOption.xAxis.data = res.map(
-        //             (item) => item.statisticDate
-        //         );
-        //         this.$nextTick(() => {
-        //             this.$refs[`chart${index}`].refresh();
-        //         });
-        //     });
-        // },
         search(filter) {
-            this.$refs.table.search(filter);
-            this.$refs.table2.search(filter);
+            Store.list(filter).then((res) => {
+                this.showMarkers((this.currentRecords = res));
+            });
         },
-        showMarkers() {
-            var points = this.currentRecords
+        showMarkers(records) {
+            var points = records
                 .filter((item) => item.lng && item.lat)
                 .map((item) => ({
                     extData: item,
                     position: [item.lng, item.lat],
                     content: `
-                    <div class="label-info-marker" title="${
-                        item.deviceName
-                    }"><i class="device-map-icon iconfont ${
-                        item.deviceType == 1 ? "iconmenjin" : "iconwifitanzhen"
-                    }"></i></div>`,
+                    <div class="label-info-marker" title="${item.deviceName}"><i class="device-map-icon xui-icon xui-icon-homepage_fill"></i></div>`,
                     clickable: true,
                     events: {
                         click: (marker) => {
@@ -694,14 +355,14 @@ export default {
             .summary-detail {
                 padding-top: 10px;
                 font-size: 0px;
-                div{
+                div {
                     display: inline-block;
                     vertical-align: middle;
-                    width:50%;
+                    width: 50%;
                     font-size: 14px;
                 }
-                label{
-                    padding-right:5px;
+                label {
+                    padding-right: 5px;
                 }
                 span {
                     text-decoration: underline;
@@ -715,12 +376,13 @@ export default {
         position: relative;
         .home-major-content {
             position: absolute;
-            top: 95px;
+            top: 50px;
             left: 0px;
             right: 0px;
             bottom: 0px;
             overflow-y: auto;
             background: #fff;
+            border-top: 1px solid #dcdcdc;
         }
     }
     .table-title {
@@ -744,7 +406,10 @@ export default {
     top: -34px;
     left: -3px;
     .device-map-icon {
-        font-size: 12px;
+        font-size: 17px;
+        position: relative;
+        left: -1px;
+        top: -1px;
     }
     &:after {
         content: "";

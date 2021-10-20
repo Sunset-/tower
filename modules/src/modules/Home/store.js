@@ -2,7 +2,7 @@ const $http = $import("dag/common/http");
 const URLS = {
 	SUMMARY: "/api/m/device/info/getDeviceStatistical",
 	STATISTICS: "/api/m/device/statistic/list",
-	LIST: "/api/m/data/real/queryIndexByCond",
+	LIST: "/api/m/project/info/list",
 	ALARM: "/api/m/data/real/queryAlarmIndexByCond",
 };
 
@@ -12,22 +12,7 @@ export default {
 			url: URLS.LIST,
 			type: "POST",
 			data: params,
-		}).then(res=>{
-            res.list&&res.list.forEach(item=>{
-                if(item.showData){
-                    item.$showData = item.showData.split(",").reduce((res,kv)=>{
-                        var kvs = kv.split(":");
-                        if(kvs.length==2){
-                            res[kvs[0]] = kvs[1];
-                        }
-                        return res;
-                    },{})
-                }else{
-                    item.$showData = {};
-                }
-            });
-            return res;
-        });
+		});
 	},
 	alarm(params){
 		return $http({
