@@ -223,7 +223,7 @@ export default {
         open(record) {
             this.path = this.path.slice(0, 1);
             this.path.push({
-                title: `设备名称:${record.deviceName}  设备SN:${record.deviceSN}`,
+                title: `设备备注:${record.deviceName}  设备SN:${record.deviceSN}`,
             }),
                 (this.record = record);
             this.tabOptions.data =
@@ -296,7 +296,7 @@ export default {
             this.paramsStatus[model.paramsType].setResult = 1;
             Store.saveParams({
                 deviceId: this.record.deviceId,
-                deviceName: this.record.deviceName, //设备名称
+                deviceName: this.record.deviceName, //设备备注
                 deviceSN: this.record.deviceSN, //设备SN
                 list: [model],
             }).then((res) => {

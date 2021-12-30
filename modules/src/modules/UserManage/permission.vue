@@ -1,9 +1,19 @@
 <template>
     <xui-modal ref="modal" :options="modalOptions" :mask-close="false">
-        <div style="height:350px;padding:15px;overflow-y:auto;">
-            <dag-tree ref="tree" :options="equipmentTree" @checked="onCheckedTree"></dag-tree>
+        <div style="height: 350px; padding: 15px; overflow-y: auto">
+            <dag-tree
+                ref="tree"
+                :options="equipmentTree"
+                @checked="onCheckedTree"
+            ></dag-tree>
         </div>
-        <div style="padding:10px;text-align:right;border-top:1px solid #dedede;">
+        <div
+            style="
+                padding: 10px;
+                text-align: right;
+                border-top: 1px solid #dedede;
+            "
+        >
             <xui-toolbar :options="toolbarOptions"></xui-toolbar>
         </div>
     </xui-modal>
@@ -53,7 +63,7 @@ export default {
                     } else {
                         return `${
                             node.deviceType == 1 ? "智能网关" : "智能互感器"
-                        } 设备名称：${node.deviceName} 设备SN：${
+                        } 设备备注：${node.deviceName} 设备SN：${
                             node.deviceSN
                         }`;
                     }
@@ -79,7 +89,7 @@ export default {
         open(record) {
             this.currentRecord = record;
             Store.getUserPermission(record.userId).then((res) => {
-                this.$refs.tree.checkNodes(res.map((item) => item.groupId));
+                this.$refs.tree.checkNodes(res.map((item) => item.projectId));
                 this.$refs.modal.open();
                 this.$nextTick(() => {
                     this.$refs.tree.refresh();
@@ -91,12 +101,12 @@ export default {
         },
         // 保存
         save() {
-            var groupIds = this.checkedNodes
-                .map((item) => item.groupId)
+            var projectIds = this.checkedNodes
+                .map((item) => item.projectId)
                 .join(",");
             Store.saveUserPermission({
                 userId: this.currentRecord.userId,
-                groupIds: groupIds,
+                projectIds: projectIds,
             }).then(() => {
                 $tip("操作成功", "success");
                 this.$refs.modal.close();

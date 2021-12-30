@@ -34,20 +34,6 @@ export default {
                         },
                     },
                     {
-                        label: "设备名称",
-                        name: "deviceName",
-                        widget: "input",
-                        placeholder: "请输入设备名称",
-                        disabled(model) {
-                            return !!model.deviceId;
-                        },
-                        clearable: false,
-                        validate: {
-                            required: true,
-                            maxlength: 64,
-                        },
-                    },
-                    {
                         label: "绑定设备SN",
                         name: "deviceSN",
                         widget: "equipmentselector",
@@ -91,6 +77,19 @@ export default {
                         prepend: "TC",
                         validate: {
                             required: true,
+                            maxlength: 64,
+                        },
+                    },
+                    {
+                        label: "设备备注",
+                        name: "deviceName",
+                        widget: "input",
+                        placeholder: "请输入设备备注",
+                        // disabled(model) {
+                        //     return !!model.deviceId;
+                        // },
+                        clearable: false,
+                        validate: {
                             maxlength: 64,
                         },
                     },

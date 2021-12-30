@@ -52,7 +52,7 @@ export default {
                 filterEmpty: true,
                 fields: [
                     {
-                        name: "groupName",
+                        name: "projectName",
                         widget: "input",
                         placeholder: "请输入项目名称",
                         manner: "search",
@@ -136,7 +136,7 @@ export default {
                                 label: "查看",
                                 size: "mini",
                                 color: "primary-text",
-                                permission : "Project_Modify",
+                                permission : "Project_View",
                                 operate: (record) => {
                                     this.edit(record,true);
                                 },
@@ -154,7 +154,7 @@ export default {
                                 label: "设备参数列表",
                                 size: "mini",
                                 color: "warning-text",
-                                permission : "Project_Modify",
+                                permission : "Project_Params",
                                 operate: (record) => {
                                     this.$refs.eqs.open(record);
                                 },
@@ -163,7 +163,7 @@ export default {
                                 label: "删除",
                                 size: "mini",
                                 color: "danger-text",
-                                permission : "Project_History",
+                                permission : "Project_Delete",
                                 operate: (record) => {
                                     this.remove(record);
                                 },

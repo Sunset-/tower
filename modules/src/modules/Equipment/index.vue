@@ -112,7 +112,7 @@ export default {
                     {
                         name: "deviceName",
                         widget: "input",
-                        placeholder: "请输入设备名称",
+                        placeholder: "请输入设备备注",
                     },
                     {
                         name: "deviceStatus",
@@ -174,7 +174,7 @@ export default {
                         align: "center",
                     },
                     {
-                        title: "设备名称",
+                        title: "设备备注",
                         name: "deviceName",
                         align: "center",
                     },
@@ -311,7 +311,7 @@ export default {
                         };
                     }
                     this.loading = false;
-                    return Store.list(filter, this.currentGroup.groupName);
+                    return Store.list(filter, this.currentGroup.projectName);
                 },
             },
             totalNum: 0,

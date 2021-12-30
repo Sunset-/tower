@@ -1,40 +1,95 @@
 <template>
     <div class="MODULE-CONTAINER MODULE-EquipmentHistoryData">
         <div class="MODULE-LEFT-SIDE">
-            <xui-filter style="padding-left:10px;" class="left_filter" ref="tree_filter" :options="treeFilterOptions"
-                @filter="searchTree"></xui-filter>
+            <xui-filter
+                style="padding-left: 10px"
+                class="left_filter"
+                ref="tree_filter"
+                :options="treeFilterOptions"
+                @filter="searchTree"
+            ></xui-filter>
             <div class="left-tree-container">
-                <dag-tree ref="tree" :options="equipmentTree" @selected="onSelected"></dag-tree>
+                <dag-tree
+                    ref="tree"
+                    :options="equipmentTree"
+                    @selected="onSelected"
+                ></dag-tree>
             </div>
         </div>
-        <div class="MODULE-MAJOR-CONTENT" v-show="page=='LIST'">
-            <div style="padding:15px 10px;border-bottom:1px solid #dedede;">
-                {{title}}
-                <span v-if="unLocalRecord" class="color-danger"
-                    style="display:inline-block;padding-left:10px;">当前设备未打开本地历史记录存储功能！</span>
+        <div class="MODULE-MAJOR-CONTENT" v-show="page == 'LIST'">
+            <div style="padding: 15px 10px; border-bottom: 1px solid #dedede">
+                {{ title }}
+                <span
+                    v-if="unLocalRecord"
+                    class="color-danger"
+                    style="display: inline-block; padding-left: 10px"
+                    >当前设备未打开本地历史记录存储功能！</span
+                >
             </div>
             <!-- 搜索条件 -->
-            <div class="PANEL-SEARCH"
-                style="border-bottom:1px solid #dedede;padding:15px 10px;justify-content: space-between;">
-                <xui-filter class="title_filter" ref="filter" :options="filterOptions" @filter="search"></xui-filter>
+            <div
+                class="PANEL-SEARCH"
+                style="
+                    border-bottom: 1px solid #dedede;
+                    padding: 15px 10px;
+                    justify-content: space-between;
+                "
+            >
+                <xui-filter
+                    class="title_filter"
+                    ref="filter"
+                    :options="filterOptions"
+                    @filter="search"
+                ></xui-filter>
                 <div>
-                    <xui-button color="primary" style="" @click="exportData">导出</xui-button>
+                    <xui-button color="primary" style="" @click="exportData"
+                        >导出</xui-button
+                    >
                 </div>
             </div>
-            <div style="position:absolute;left:0px;right:0px;bottom:0px;top:100px;padding:10px;overflow:scroll;"
-                @click="tableClick">
-                <xui-datapage ref="datapage" :options="dataPageOptions" @output="getTable">
-                    <xui-table v-show="viewMode=='TABLE'" ref="table" :options="tableOptions">
+            <div
+                style="
+                    position: absolute;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    top: 100px;
+                    padding: 10px;
+                    overflow: scroll;
+                "
+                @click="tableClick"
+            >
+                <xui-datapage
+                    ref="datapage"
+                    :options="dataPageOptions"
+                    @output="getTable"
+                >
+                    <xui-table
+                        v-show="viewMode == 'TABLE'"
+                        ref="table"
+                        :options="tableOptions"
+                    >
                     </xui-table>
                 </xui-datapage>
             </div>
         </div>
         <xui-modal ref="alarmmodal" title="报警详情" width="500">
-            <div style="padding:15px;max-height:400px;overflow-y:auto;">
-                <div style="padding:10px;">设备SN：{{alarmDevice.deviceSN}}&nbsp;&nbsp;设备备注：{{alarmDevice.deviceName}}
+            <div style="padding: 15px; max-height: 400px; overflow-y: auto">
+                <div style="padding: 10px">
+                    设备SN：{{ alarmDevice.deviceSN }}&nbsp;&nbsp;设备备注：{{
+                        alarmDevice.deviceName
+                    }}
                 </div>
-                <div style="padding:10px;" v-for="c in alarmDevice.channels" :key="c.index">通道{{c.index}}：<span
-                        :class="{'color-primary':c.alarmText!='-'}">{{c.alarmText}}</span></div>
+                <div
+                    style="padding: 10px"
+                    v-for="c in alarmDevice.channels"
+                    :key="c.index"
+                >
+                    通道{{ c.index }}：<span
+                        :class="{ 'color-primary': c.alarmText != '-' }"
+                        >{{ c.alarmText }}</span
+                    >
+                </div>
             </div>
         </xui-modal>
     </div>
@@ -190,6 +245,37 @@ export default {
                         ],
                     },
                     {
+                        label: "通道编号",
+                        name: "channelNum",
+                        widget: "select",
+                        defaultFirst: true,
+                        changeFilter: true,
+                        placeholder: "请选择通道",
+                        style: "width:120px;",
+                        clearable: false,
+                        premise: () => {
+                            return (
+                                this.currentDevice &&
+                                this.currentDevice.deviceType == "1"
+                            );
+                        },
+                        data() {
+                            var items = [
+                                {
+                                    text: "全部",
+                                    value: "ALL",
+                                },
+                            ];
+                            for (var i = 1; i <= 16; i++) {
+                                items.push({
+                                    text: `通道${i}`,
+                                    value: `${i}`,
+                                });
+                            }
+                            return items;
+                        },
+                    },
+                    {
                         name: "alarmcode",
                         widget: "radio",
                         changeFilter: true,
@@ -262,90 +348,20 @@ export default {
             tableOptions: {
                 columns: [
                     {
-                        title: "变幅",
-                        name: "amplitude",
+                        title: "上线时间",
+                        name: "onlineTime",
                         align: "center",
-                        style: "width:70px;",
+                        format: "DATETIME",
                     },
                     {
-                        title: "高度",
-                        name: "height",
+                        title: "离线时间",
+                        name: "offlineTime",
                         align: "center",
-                        style: "width:70px;",
+                        format: "DATETIME",
                     },
                     {
-                        title: "吊重",
-                        name: "suspendWeight",
-                        align: "center",
-                        style: "width:70px;",
-                    },
-                    {
-                        title: "回转",
-                        name: "gyration",
-                        align: "center",
-                        style: "width:70px;",
-                    },
-                    {
-                        title: "风速",
-                        name: "windSpeed",
-                        align: "center",
-                        style: "width:70px;",
-                    },
-                    {
-                        title: "倾角",
-                        name: "dipAngle",
-                        align: "center",
-                        style: "width:70px;",
-                    },
-                    {
-                        title: "力矩百分比",
-                        name: "torquePercent",
-                        align: "center",
-                    },
-                    {
-                        title: "吊重百分比",
-                        name: "suspendWeightPercent",
-                        align: "center",
-                    },
-                    {
-                        title: "倾斜百分比",
-                        name: "dipAnglePercent",
-                        align: "center",
-                    },
-                    {
-                        title: "风速百分比",
-                        name: "windSpeedPercent",
-                        align: "center",
-                    },
-                    {
-                        title: "报警状态",
-                        name: "alarmcode",
-                        format(v, record) {
-                            if (v == 0) {
-                                return v;
-                            } else {
-                                var alarm = Object.keys(record.$showData)
-                                    .filter((k) => k.indexOf("alarmcode") == 0)
-                                    .reduce((res, k) => {
-                                        res.push(
-                                            k.replace("alarmcode", "") +
-                                                ":" +
-                                                record.$showData[k]
-                                        );
-                                        return res;
-                                    }, [])
-                                    .join(";");
-                                return `<div class="device-alarm-num"
-                                 data-alarm="${alarm}"
-                                  data-sn="${record.deviceSN}"
-                                   data-name="${record.deviceName}"
-                                    data-type="${record.deviceType}" style="color:#4487F1;cursor:pointer;">${v}</div>`;
-                            }
-                        },
-                    },
-                    {
-                        title: "制动状态",
-                        name: "brakingCode",
+                        title: "在线时长",
+                        name: "onlineTimeLength",
                         align: "center",
                     },
                 ],
@@ -598,4 +614,4 @@ export default {
         vertical-align: bottom;
     }
 }
-</style>
+</style>z``

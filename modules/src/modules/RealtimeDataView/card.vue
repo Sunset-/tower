@@ -1,7 +1,7 @@
 <template>
     <div class="device-data-card">
         <div class="card-title">
-            <span v-if="closeable">设备名称：{{data.deviceName}}</span>
+            <span v-if="closeable">设备备注：{{data.deviceName}}</span>
             <span v-if="!closeable">{{data.deviceName}}({{data.deviceSN}})</span>
             <div :class="['device-card-status-wrap',closeable?'closeable':'']" v-html="statusDom">
             </div>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="card-foot">{{data.addTime | time}}
-            <span v-if="closeable" :title="`项目：${data.groupName}`" style="float:right;width:250px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;">项目：{{data.groupName}}</span>
+            <span v-if="closeable" :title="`项目：${data.projectName}`" style="float:right;width:250px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;">项目：{{data.projectName}}</span>
             <div v-if="!closeable" style="float:right;width:100px;">报警码：
                 <i v-if="data.alarmcode==0" :class="{'color-primary':data.alarmcode!='0'}">{{data.alarmcode}}</i>
                 <div v-if="data.alarmcode!=0" class="device-alarm-num" :data-alarm="alarmCode" :data-sn="data.deviceSN" :data-name="data.deviceName" style="color:#4487F1;cursor:pointer;display:inline-block;">

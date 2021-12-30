@@ -31,7 +31,7 @@
         </div>
         <xui-modal ref="alarmmodal" title="报警详情" width="500">
             <div style="padding:15px;max-height:400px;overflow-y:auto;">
-                <div style="padding:10px;">设备SN：{{alarmDevice.deviceSN}}&nbsp;&nbsp;设备名称：{{alarmDevice.deviceName}}
+                <div style="padding:10px;">设备SN：{{alarmDevice.deviceSN}}&nbsp;&nbsp;设备备注：{{alarmDevice.deviceName}}
                 </div>
                 <div style="padding:10px;" v-for="c in alarmDevice.channels" :key="c.index">通道{{c.index}}：<span
                         :class="{'color-primary':c.alarmText!='-'}">{{c.alarmText}}</span></div>
@@ -400,7 +400,7 @@ export default {
         },
         title() {
             if (this.currentDevice.deviceName) {
-                return `${this.currentDevice.groupName} > ${this.currentDevice.deviceName}`;
+                return `${this.currentDevice.projectName} > ${this.currentDevice.deviceName}（${this.currentDevice.deviceSN}）`;
             }
             return "-";
         },

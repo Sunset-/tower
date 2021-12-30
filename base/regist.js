@@ -18,6 +18,7 @@ $import.regist("dag/modules/RoleManage", require("../modules/src/modules/RoleMan
 $import.regist("dag/modules/RealtimeDataView", require("../modules/src/modules/RealtimeDataView/index.js"));
 $import.regist("dag/modules/HistoryDataView", require("../modules/src/modules/HistoryDataView/index.js"));
 $import.regist("dag/modules/WorkDataView", require("../modules/src/modules/WorkDataView/index.js"));
+$import.regist("dag/modules/RunDataView", require("../modules/src/modules/RunDataView/index.js"));
 $import.regist("dag/modules/HistoryDataAnalysis", require("../modules/src/modules/HistoryDataAnalysis/index.js"));
 $import.regist("dag/modules/AlarmDataAnalysis", require("../modules/src/modules/AlarmDataAnalysis/index.js"));
 $import.regist("dag/modules/SystemConfig", require("../modules/src/modules/SystemConfig/index.js"));

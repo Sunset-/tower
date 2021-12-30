@@ -129,7 +129,7 @@ export default {
                         name: "permissionNames",
                         align: "left",
                         headAlign: "left",
-                        style: "padding-left:10px;",
+                        style: "padding-left:10px;width:600px;",
                         innerStyle: "white-space: break-spaces;",
                         headStyle: "padding-left:10px;",
                     },
@@ -138,7 +138,7 @@ export default {
                         style: "width:220px;text-align:center;",
                         toolbar: [
                             {
-                                label: "编辑属性",
+                                label: "编辑",
                                 color: "primary-text",
                                 permission : "RoleManage_Modify",
                                 operate: (record) => {

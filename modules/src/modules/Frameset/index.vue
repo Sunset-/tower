@@ -2,18 +2,44 @@
     <div class="app-container">
         <header class="app-header">
             <div class="app-logo" @click="home">
-                <div class="app-logo-imgwrap">
+                <!-- <div class="app-logo-imgwrap">
                     <img class="app-logo-img" v-show="applicationLogo" :src="applicationLogo" />
-                </div>
-                <span>{{applicationTitle}}</span>
+                </div> -->
+                <span>{{ applicationTitle }}</span>
             </div>
             <div class="header-user">
                 <span class="header_username" :title="userName">
-                    <div v-if="applicationLogo" style="height:35px;width:35px;display:inline-block;vertical-align:middle;overflow:hidden;border-radius:50px;margin-right:5px;">
-                        <img class="app-logo-img" style="height:100%;;" :src="applicationLogo" />
+                    <div
+                        v-if="applicationLogo"
+                        style="
+                            height: 35px;
+                            width: 35px;
+                            display: inline-block;
+                            vertical-align: middle;
+                            overflow: hidden;
+                            border-radius: 50px;
+                            margin-right: 5px;
+                        "
+                    >
+                        <img
+                            class="app-logo-img"
+                            style="height: 100% ;"
+                            :src="applicationLogo"
+                        />
                     </div>
-                    <i v-if="!applicationLogo" class="xui-icon xui-icon-people_fill" style="display:inline-block;vertical-align:middle;line-height: 16px;"></i>
-                    <span style="display:inline-block;vertical-align:middle;">{{ userName }}</span>
+                    <i
+                        v-if="!applicationLogo"
+                        class="xui-icon xui-icon-people_fill"
+                        style="
+                            display: inline-block;
+                            vertical-align: middle;
+                            line-height: 16px;
+                        "
+                    ></i>
+                    <span
+                        style="display: inline-block; vertical-align: middle"
+                        >{{ userName }}</span
+                    >
                     <ul class="header_down">
                         <li @click="editorPassword">修改密码</li>
                         <li @click="loginOut">登出</li>
@@ -22,19 +48,53 @@
             </div>
         </header>
         <div class="app-content">
-            <div :class="['app-sidebar']" @mouseenter="showSideMenu(true)" @click="showSideMenu(true, true)" @mouseleave="showSideMenu(false)">
-                <el-menu :default-active="$route.name" background-color="#1F2129" text-color="#efefef" :router="true" class="el-menu-vertical-demo" style="overflow:hidden;border-right:none;" @open="handleOpen" @close="handleClose">
-                    <template v-for="(item,index) in menus">
-                        <el-submenu v-if="!item.hide&&item.menu&&checkPermission(item)" :key="index" :index="item.name">
+            <div
+                :class="['app-sidebar']"
+                @mouseenter="showSideMenu(true)"
+                @click="showSideMenu(true, true)"
+                @mouseleave="showSideMenu(false)"
+            >
+                <el-menu
+                    :default-active="$route.name"
+                    background-color="#1F2129"
+                    text-color="#efefef"
+                    :router="true"
+                    class="el-menu-vertical-demo"
+                    style="overflow: hidden; border-right: none"
+                    @open="handleOpen"
+                    @close="handleClose"
+                >
+                    <template v-for="(item, index) in menus">
+                        <el-submenu
+                            v-if="
+                                !item.hide && item.menu && checkPermission(item)
+                            "
+                            :key="index"
+                            :index="item.name"
+                        >
                             <template slot="title">
                                 <i :class="item.icon"></i>
-                                <span>{{item.title}}</span>
+                                <span>{{ item.title }}</span>
                             </template>
-                            <el-menu-item v-for="(sitem,sindex) in item.menu" :key="sindex" v-show="checkPermission(sitem)" :index="sitem.name">
-                                {{sitem.title}}</el-menu-item>
+                            <el-menu-item
+                                v-for="(sitem, sindex) in item.menu"
+                                :key="sindex"
+                                v-show="checkPermission(sitem)"
+                                :index="sitem.name"
+                            >
+                                {{ sitem.title }}</el-menu-item
+                            >
                         </el-submenu>
-                        <el-menu-item v-if="!item.hide&&!item.menu&&checkPermission(item)" :key="index" :index="item.name">
-                            <i :class="item.icon"></i>&nbsp;{{item.title}}
+                        <el-menu-item
+                            v-if="
+                                !item.hide &&
+                                !item.menu &&
+                                checkPermission(item)
+                            "
+                            :key="index"
+                            :index="item.name"
+                        >
+                            <i :class="item.icon"></i>&nbsp;{{ item.title }}
                         </el-menu-item>
                     </template>
                 </el-menu>
@@ -45,7 +105,11 @@
         </div>
         <!-- 修改密码弹框 -->
         <xui-modal ref="modal" :options="modalOptions" :mask-close="false">
-            <xui-form ref="form" :options="formOptions" @submit="save"></xui-form>
+            <xui-form
+                ref="form"
+                :options="formOptions"
+                @submit="save"
+            ></xui-form>
         </xui-modal>
     </div>
 </template>
@@ -65,7 +129,7 @@ export default {
     },
     data() {
         return {
-            // applicationTitle: $config.get("application.title"),
+            applicationTitle: $config.get("application.title"),
             singleNode: $config.get("singleNode"),
             editionVersion: "",
             hideSideMenuTimer: null,
@@ -167,12 +231,14 @@ export default {
     },
     computed: {
         routekey() {
-            return this.$route.name !== undefined? this.$route.name + +new Date(): this.$route + +new Date()
+            return this.$route.name !== undefined
+                ? this.$route.name + +new Date()
+                : this.$route + +new Date();
         },
-        applicationTitle() {
-            var user = this.currentUser || {};
-            return user.title || "物联网管理平台";
-        },
+        // applicationTitle() {
+        //     var user = this.currentUser || {};
+        //     return user.title || "物联网管理平台";
+        // },
         applicationLogo() {
             var user = this.currentUser || {};
             if (!user.logoPath) {

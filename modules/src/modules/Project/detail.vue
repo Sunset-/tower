@@ -1,6 +1,17 @@
 <template>
-    <xui-modal ref="modal" width="900" title="项目编辑">
-        <xui-form ref="form" :view="isView" class="project-detail-form" :options="formOptions" @submit="save" @cancel="cancel">
+    <xui-modal
+        ref="modal"
+        width="900"
+        :title="isView ? '项目信息' : '项目编辑'"
+    >
+        <xui-form
+            ref="form"
+            :view="isView"
+            class="project-detail-form"
+            :options="formOptions"
+            @submit="save"
+            @cancel="cancel"
+        >
         </xui-form>
     </xui-modal>
 </template>
@@ -11,7 +22,7 @@ const $tip = $import("dag/common/tip");
 export default {
     data() {
         return {
-            isView : false,
+            isView: false,
             formOptions: {
                 cols: 2,
                 fields: [
@@ -32,6 +43,7 @@ export default {
                         label: "开工时间",
                         name: "startTime",
                         widget: "date",
+                        view : "DATE",
                         validate: {
                             required: true,
                         },
@@ -40,6 +52,7 @@ export default {
                         label: "完工时间",
                         name: "endTime",
                         widget: "date",
+                        view : "DATE",
                         validate: {
                             required: true,
                         },
@@ -108,7 +121,7 @@ export default {
                         },
                     },
                     {
-                        label: "安全站",
+                        label: "安监站",
                         name: "safetyStation",
                         newline: true,
                         widget: "input",
@@ -119,7 +132,7 @@ export default {
                     },
                     ,
                     {
-                        label: "安全站联系人",
+                        label: "安监站联系人",
                         name: "safetyStationPerson",
                         widget: "input",
                         placeholder: "请输入联系人",
@@ -128,7 +141,7 @@ export default {
                         },
                     },
                     {
-                        label: "安全站联系人电话",
+                        label: "安监站联系人电话",
                         name: "safetyStationPhone",
                         widget: "input",
                         placeholder: "请输入联系方式",
@@ -217,11 +230,37 @@ export default {
                         model.lonlat = `${model.lng},${model.lat}`;
                     }
                 },
+                toolbar: {
+                    tools: [
+                        {
+                            label: "取消",
+                            signal: "CANCEL",
+                            premise: () => {
+                                return !this.isView;
+                            },
+                        },
+                        {
+                            label: "返回",
+                            signal: "CANCEL",
+                            premise: () => {
+                                return this.isView;
+                            },
+                        },
+                        {
+                            label: "保存",
+                            color: "success",
+                            signal: "SUBMIT",
+                            premise: () => {
+                                return !this.isView;
+                            },
+                        },
+                    ],
+                },
             },
         };
     },
     methods: {
-        open(model,view) {
+        open(model, view) {
             this.$refs.modal.open();
             this.isView = !!view;
             this.$refs.form.reset(model);

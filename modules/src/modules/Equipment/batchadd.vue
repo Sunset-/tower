@@ -29,7 +29,7 @@ export default {
             toolbarOptions: {
                 tools: [
                     {
-                        label: "设备名称前缀批量添加",
+                        label: "设备备注前缀批量添加",
                         color: "primary",
                         operate: () => {
                             this.$refs.namemodal.open();
@@ -192,10 +192,10 @@ export default {
                         },
                         cols: [
                             {
-                                title: "设备名称",
+                                title: "设备备注",
                                 name: "deviceName",
                                 widget: "input",
-                                placeholder: "请输入设备名称",
+                                placeholder: "请输入设备备注",
                                 colStyle: "width:200px;",
                                 maxlength: 64,
                                 validate(v, record, records, model) {
@@ -335,13 +335,13 @@ export default {
         },
         syncValidate(item, records, deviceType) {
             if (!item.deviceName) {
-                return "设备名称不能为空";
+                return "设备备注不能为空";
             }
             if (
                 records.filter((t) => t.deviceName == item.deviceName).length >
                 1
             ) {
-                return "设备名称重复";
+                return "设备备注重复";
             }
             if (item.deviceSN.length != 8) {
                 return "SN长度应为8";

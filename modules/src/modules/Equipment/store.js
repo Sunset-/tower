@@ -15,7 +15,7 @@ const URLS = {
 };
 
 export default {
-  list(query, groupName) {
+  list(query, projectName) {
     return $http({
       url: URLS.LIST,
       type: "POST",
@@ -24,7 +24,7 @@ export default {
       res &&
         res.list &&
         res.list.forEach((item) => {
-          item.groupName = item.groupName || groupName;
+          item.projectName = item.projectName || projectName;
         });
       return res;
     });

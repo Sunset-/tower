@@ -7,8 +7,8 @@ const URLS = {
 	HISTORY: "/api/m/sys/session/query",
 	EXPORTS: "/api/m/sys/session/listExport",
 	resetPassword: "/api/m/sys/user/resetPassword",
-	SAVE_USER_PERMISSION : "/api/m/device/group/saveBatchGroupUser",
-	GET_USER_PERMISSION : "/api/m/device/group/list",
+	SAVE_USER_PERMISSION : "/api/m/project/info/saveBatchProjectUser",
+	GET_USER_PERMISSION : "/api/m/project/info/list",
 	BATCH_UPDATE_LOGO : "/api/m/sys/user/updateBatchLogoTitles",
 	editorPassword: "/api/urm-resource/api/user/modifyPassword",
 	checkUserExist: "/api/urm-resource/api/user/checkUserExist",
@@ -87,7 +87,9 @@ export default {
 			url: `${URLS.GET_USER_PERMISSION}`,
 			type: "post",
 			data: {
-				userId
+				userId,
+				pageSize : 99999,
+				pageIndex : 1
 			},
 		});
 	},

@@ -82,7 +82,7 @@
         <xui-modal ref="alarmmodal" title="报警详情" width="500">
             <div style="padding: 15px; max-height: 400px; overflow-y: auto">
                 <div style="padding: 10px">
-                    设备SN：{{ alarmDevice.deviceSN }}&nbsp;&nbsp;设备名称：{{
+                    设备SN：{{ alarmDevice.deviceSN }}&nbsp;&nbsp;设备备注：{{
                         alarmDevice.deviceName
                     }}
                 </div>
@@ -363,6 +363,9 @@ export default {
                         name: "dipAngle",
                         align: "center",
                         style: "width:50px;",
+                        format(v,record){
+                            return `(${isNaN(record.dipAngleX)?'-':record.dipAngleX},${isNaN(record.dipAngleY)?'-':record.dipAngleY})`
+                        }
                     },
                     {
                         title: "力矩百分比",

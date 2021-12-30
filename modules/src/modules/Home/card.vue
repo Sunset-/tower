@@ -74,7 +74,7 @@ export default {
                     name: "buildParty",
                 },
                 {
-                    label: "所属安全站",
+                    label: "所属安监站",
                     line: true,
                     name: "safetyStation",
                 },

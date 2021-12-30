@@ -100,12 +100,12 @@
                 </div>
             </div>
             <div class="home-major">
-                <xui-filter
+                <!-- <xui-filter
                     :options="filterOptions"
                     @filter="search"
                     style="display: block; background: #fff; padding-left: 10px"
                 >
-                </xui-filter>
+                </xui-filter> -->
                 <div class="home-major-content" v-show="viewMode == 'MAP'">
                     <iot-map ref="map" @inited="showMarkers()"></iot-map>
                 </div>
@@ -175,12 +175,12 @@ export default {
                 fields: [
                     {
                         label: "项目名称",
-                        name: "groupName",
+                        name: "projectName",
                         widget: "input",
                         placeholder: "请输入",
                     },
                     {
-                        label: "设备名称",
+                        label: "设备备注",
                         name: "deviceName",
                         widget: "input",
                         placeholder: "请输入",
@@ -213,6 +213,9 @@ export default {
             Store.summary().then((res) => {
                 Object.assign(this.summary, res || {});
             });
+            Store.list({}).then((res) => {
+                this.showMarkers((this.currentRecords = res));
+            });
         },
         search(filter) {
             Store.list(filter).then((res) => {
@@ -220,6 +223,7 @@ export default {
             });
         },
         showMarkers(records) {
+            records = records || this.currentRecords;
             var points = records
                 .filter((item) => item.lng && item.lat)
                 .map((item) => ({
@@ -376,7 +380,7 @@ export default {
         position: relative;
         .home-major-content {
             position: absolute;
-            top: 50px;
+            top: 0px;
             left: 0px;
             right: 0px;
             bottom: 0px;

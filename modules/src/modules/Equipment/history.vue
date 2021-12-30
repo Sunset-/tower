@@ -130,7 +130,7 @@ export default {
                         align: "center",
                     },
                     {
-                        title: "设备名称",
+                        title: "设备备注",
                         name: "contentRecord.deviceName",
                         align: "center",
                     },

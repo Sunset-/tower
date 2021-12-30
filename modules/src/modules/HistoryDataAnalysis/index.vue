@@ -432,11 +432,11 @@ export default {
         title() {
             if (this.mode) {
                 if (this.currentDevice.deviceName) {
-                    return `${this.currentDevice.groupName} > ${this.currentDevice.deviceName}`;
+                    return `${this.currentDevice.projectName} > ${this.currentDevice.deviceName}`;
                 }
             } else {
                 return this.checkedDevices
-                    .map((item) => `${item.groupName} > ${item.deviceName}`)
+                    .map((item) => `${item.projectName} > ${item.deviceName}`)
                     .join(" , ");
             }
             return "-";

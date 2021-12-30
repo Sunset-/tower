@@ -20,7 +20,7 @@ if (!appBuildConfig) {
 console.log("开始构建：" + appName);
 
 // clean(path.join(__dirname,'../../dist/urm_front'));
-clean(path.join(__dirname, "../../dist/waterwheel_front"));
+clean(path.join(__dirname, "../../dist/tower_front"));
 
 const config = merge(baseConfig, {
 	mode: "production",
@@ -36,12 +36,12 @@ const config = merge(baseConfig, {
 		new CopyWebpackPlugin([
 			{
 				from: resolve("static"),
-				to: resolve("dist/iot-gw_front"),
+				to: resolve("dist/tower_front"),
 				ignore: [".*"],
 			},
 			{
 				from: resolve("base/netposa_xui/.*"),
-				to: resolve("dist/iot-gw_front/NetPosaXUI"),
+				to: resolve("dist/tower_front/NetPosaXUI"),
 				ignore: [".*"],
 			},
 		]),

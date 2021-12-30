@@ -33,6 +33,8 @@
 import circle from "./circle.vue";
 import Store from "./store";
 
+const $dictionary = $import("dag/common/dictionary");
+
 export default {
     components: {
         DeviceCircle: circle,
@@ -40,40 +42,7 @@ export default {
     data() {
         return {
             selected: {},
-            items: [
-                {
-                    x: 50,
-                    y: 50,
-                    l: 80,
-                    t: 10,
-                    f: 40,
-                    r: 90,
-                },
-                {
-                    x: 250,
-                    y: 250,
-                    l: 120,
-                    t: 30,
-                    f: 70,
-                    r: 30,
-                },
-                {
-                    x: 340,
-                    y: 140,
-                    l: 90,
-                    t: 10,
-                    f: 40,
-                    r: 50,
-                },
-                {
-                    x: 440,
-                    y: 340,
-                    l: 90,
-                    t: 10,
-                    f: 40,
-                    r: 50,
-                },
-            ],
+            items: [],
             infos: [
                 {
                     name: "塔机名称",
@@ -96,19 +65,25 @@ export default {
                 {
                     name: "在线状态",
                     value(eq) {
-                        return eq.deviceName;
+                        return $dictionary.transcode(
+                            "DEVICE_STATUS",
+                            eq.$realData && eq.$realData.deviceStatus
+                        );
                     },
                 },
                 {
                     name: "塔机类型",
                     value(eq) {
-                        return eq.$realData && eq.$realData.deviceType;
+                        return $dictionary.transcode(
+                            "DEVICE_TYPE",
+                            eq.$realData && eq.$realData.deviceType
+                        );
                     },
                 },
                 {
                     name: "ByPass",
                     value(eq) {
-                        return eq.deviceName;
+                        return 0;
                     },
                 },
                 {
@@ -132,13 +107,13 @@ export default {
                 {
                     name: "起重臂(m)",
                     value(eq) {
-                        return eq.$realData && eq.$realData.gyration;
+                        return eq.armLength;
                     },
                 },
                 {
                     name: "平衡臂(m)",
                     value(eq) {
-                        return eq.$realData && eq.$realData.gyration;
+                        return eq.rearBridgeLong;
                     },
                 },
                 {
@@ -205,18 +180,15 @@ export default {
                 datas.list.forEach((item) => {
                     if (eqMap[item.deviceSN]) {
                         eqMap[item.deviceSN].f = item.amplitude;
-                        eqMap[item.deviceSN].r = item.dipAngle;
+                        eqMap[item.deviceSN].r = item.dipAngle || 0;
                         eqMap[item.deviceSN].$realData = item;
                     }
                 });
                 this.items = eqs;
+                if (eqs.length > 0) {
+                    this.selectEq(eqs[0]);
+                }
                 this.$refs.modal.open();
-
-                eqs[1].x += 130;
-                eqs[1].y += 130;
-
-                eqs[2].x += 130;
-                eqs[2].y += 0;
             });
         },
         selectEq(eq) {

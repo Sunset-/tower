@@ -129,7 +129,7 @@ export default {
                     },
                     {
                         title: "项目名称",
-                        name: "contentRecord.groupName",
+                        name: "contentRecord.projectName",
                         align: "center",
                     },
                     {
